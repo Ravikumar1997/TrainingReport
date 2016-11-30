@@ -1,0 +1,99 @@
+\documentclass[12pt]{report}
+\usepackage[print,nopanel]{pdfscreen}
+\usepackage{lipsum}
+%\usepackage{titletoc}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\chaptertitlename~\thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{20pt}{40pt}
+\titlespacing*{name=\chapter,numberless}{0pt}{-30pt}{10pt}
+\usepackage{lastpage}
+\usepackage{macro/macro}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage[Glenn]{fncychap}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor, colortbl}
+\definecolor{Gray}{gray}{0.85}
+\newcolumntype{K}[1]{>{\centering\arraybackslash}p{#1}}
+\usepackage{placeins}
+\let\Oldsection\section
+\renewcommand{\section}{\FloatBarrier\Oldsection}
+\let\Oldsubsection\subsection
+\renewcommand{\subsection}{\FloatBarrier\Oldsubsection}
+\let\Oldsubsubsection\subsubsection
+\renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
+\lhead{\tiny\bfseries Linux driver developement for SPIRIT}
+\usepackage[left=2.5cm, right=1.5cm, top=2.5cm, bottom=1.5cm]{geometry}
+\pagestyle{fancy}
+\margins{2.5cm}{1.5cm}{2.5cm}{1.5cm}
+\linespread{1.25}
+\setlength\parindent{0pt}
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{5}
+
+\begin{screen}
+	\renewcommand{\encodingdefault}{T1}
+	\usepackage{setspace}
+	\linespread{1.5}
+	\renewcommand{\rmdefault}{ptm}
+\end{screen}
+\screensize{8cm}{9cm}
+\overlay{overlay8.pdf}
+\usepackage{graphicx}
+%\usepackage[compact]{titlesec}
+%\titleformat{\chapter}[display]
+%{\normalfont\huge\bfseries}{\chaptertitlename\\thechapter}{20pt}{\Huge}
+%\titlespacing*{\chapter}{0pt}{0pt}{40pt}
+
+\begin{document}
+	\input{input/titlepage.tex}
+	\begin{screen}
+		\ppttitle
+	\end{screen}
+	\footskip 0.7cm
+	\thispagestyle{empty}
+
+	\pagetitle
+	\newpage
+
+	\pagenumbering{Roman}
+	\cfoot{\thepage}
+
+	\input{input/abstract.tex}
+	\newpage
+
+	\input{input/acknowledgement.tex}
+	\newpage
+
+	\tableofcontents
+	\newpage
+
+	\listoffigures
+	\newpage
+
+	\listoftables
+	\newpage
+
+	\pagenumbering{arabic}
+	\cfoot{\thepage}
+
+	\input{input/chapterOne.tex}
+	\newpage
+
+	\input{input/chapterTwo.tex}
+	\newpage
+
+	\input{input/chapterThree.tex}
+	\newpage
+
+	\input{input/chapterFour.tex}
+	\newpage
+
+	\input{input/chapterFive.tex}
+	\newpage
+	
+	\input{input/references.tex}
+\end{document}

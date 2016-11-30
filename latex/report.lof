@@ -1,0 +1,29 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces STMicroelectronics Pvt. Ltd., Greator Noida}}{1}{figure.1.1}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces atmel transceiver}}{5}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Microchip transceiver}}{6}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Texas transceiver}}{6}{figure.2.3}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Star topology}}{11}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Peer to Peer topology}}{12}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Cluster network}}{13}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces IEEE 802.15.4}}{14}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces MAC Sublayer reference model}}{16}{figure.3.5}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces 6 Lowpan over IEEE}}{18}{figure.3.6}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Fragmentation and defragmentation}}{20}{figure.3.7}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces WPAN the officila SPIRIT stack of Linux}}{22}{figure.3.8}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Linux-WPAN}}{23}{figure.3.9}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Block diagram of SPIRIT}}{25}{figure.3.10}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces spirit1/spirit2 protocol stack}}{26}{figure.3.11}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Pin configuration of SPIRIT2}}{27}{figure.3.12}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Operating modes of spirit}}{30}{figure.3.13}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Spirit opearting modes summary}}{30}{figure.3.14}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Raspberry Pi 2}}{38}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces BeagleBone Black}}{39}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Buildroot}}{40}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Source Browsing through Cscope}}{41}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Logic Analyzer}}{43}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces enable the SPI in RPI2 board}}{44}{figure.4.6}
+\addvspace {10\p@ }
