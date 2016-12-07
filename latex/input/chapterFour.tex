@@ -127,7 +127,7 @@ A logic analyzer is an electronic instrument that captures and displays multiple
 sysfs is a pseudo file system provided by the Linux kernel that exports information about various kernel subsystems, hardware devices, and associated device drivers from the kernel's device model to user space through virtual files. In addition to providing information about various devices and kernel subsystems, exported virtual files are also used for their configuring. sysfs provides functionality similar to the sysctl mechanism found in BSD operating systems, with the difference that sysfs is implemented as a virtual file system instead of being a purpose-built kernel mechanism. Sysfs is used by several utilities to access information about hardware and its driver (kernel modules) such as udev or HAL. Scripts have been written to access information previously obta For every kobject that is registered with the system, a directory is created for it in sysfs. That directory is created as a subdirectory of the kobject's parent, expressing internal object hierarchies to userspace. %Top-level directories in sysfs represent the common ancestors of object hierarchies; i.e. the subsystems the objects belong to. Sysfs internally stores a pointer to the kobject that implements a directory in the kernfs_node object associated with the directory. In the past this kobject pointer has been used by sysfs to do reference counting directly on the kobject whenever the file is opened or closed. With the current sysfs implementation the kobject reference count is only modified directly by the function sysfs_schedule_callback().%
 \section{Testing}
 The driver job is to send the commands from the one SPIRIT to another one and getting back its response. if all this happen sucessfully then that should means that the SPIRIT is able to communicate with another SPIRIT.\\
-For testing the SPIRIT we have to do the following SPIRIT:
+For testing the SPIRIT we have to do the following procedure:
 \subsection{Enable the SPI in RPI2 board}
 	\begin{enumerate}
 		\item To enable the SPI in raspberry PI board. Run the following command.
@@ -141,7 +141,17 @@ For testing the SPIRIT we have to do the following SPIRIT:
 		\item Select Enable the SPI and then select on save and exit
 	\end{enumerate}
 \subsubsection{Make the entry in dts}
-Make the entry in dts for the SPIRIT1 under the SPI cateogary.
+We discused in the previous section about the .dts. Now we have to make the entry of the SPIRIT1 in the dts then we have to convert this into .dtb. 
+for making the entry in the .dts we have to run the following command:\\
+cd linux\\
+cd arch/arm/boot/dts\\
+vi bcm2709-rpi2b.dts\\
+then add the following in the SPI category as shown in figure:\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=3in, height=2in]{images/dts.png}
+	\caption{Entry in dts}
+\end{figure}
 \subsection{Interfacing between RPI2 and SPSGRF(SPIRIT1)}
 The SPSGRF-868 and SPSGRF-915 are easy-to-use, low power sub-GHz modules based on the SPIRIT1 RF transceiver, operating respectively in the 868 MHz SRD and 915 MHz ISM bands.\\
 The SPSGRF series enables wireless connectivity in electronic devices, requiring no RF experience or expertise for integration into the final product. As an FCC, IC, and CE certified solution, the SPSGRF series optimizes the time-to-market of end applications. The SPSGRF-915 is an FCC certified module (FCC ID: S9NSPSGRF) and IC certified (IC 8976C-SPSGRF), while the SPSGRF-868 is certified CE0051.
@@ -170,13 +180,23 @@ The SPSGRF series enables wireless connectivity in electronic devices, requiring
 	}
 	\caption{RPI2 and SPIRIT Interfacing}
 \end{table}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4.5in, height=3in]{images/interfacing.jpg}
+	\caption{Interfacing between RPI2 and SPIRIT1}
+\end{figure}
 \subsection{Test using logic Analyzer}
 We discussed in the previous section about the logic analyzer and how it works. Now we test the SPI of SPIRIT using logic analyzer. It gives us an idea that the data through the SPI is going correctly or not. For that we have to connect the logic Analyzer with the SPIRIT board and send the data over sysfs file using command:\\
-\textbf{echo 1 > filename}
+\textbf{echo FF $>$ filename}\\
 Run the above command and notice the data over logic analyzer. It gives:
 After the data through the SPI is flowing correctly. Now we have to send the commands for the SPIRIT to become ready. For that we send the command 0x03 over SPI after that SPIRIT become ready to accept the data. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4.5in, height=2.5in]{images/raspberryoutput.png}
+	\caption{Raspberry PI output on logic Analyzer}
+\end{figure}
 \subsection{Test the hardware}
-When the SPIRIT become ready to accept the data. Now for the hardware verification we have to read the version info and version number of the SPIRIT to verify that whether our hardware is recognised by the Linux or not.
+When the SPIRIT become ready to accept the data. Now for the hardware verification we have to read the version info and version number of the SPIRIT to verify that whether our hardware is recognised by the Linux or not.\\
 \begin{table}[ht]
 	\centering
 	\scalebox{0.85}
@@ -194,8 +214,22 @@ When the SPIRIT become ready to accept the data. Now for the hardware verificati
 	}
 	\caption{Hardware Register}
 \end{table}
-Hardware verification means it should give the value 1 of part number and 48 of the version number. When we get this value it means our hardware is recognised by the Linux.
-
+\noindent As shown in the table that for the version info and version number we have to read the value from the SPIRIT1 using the read function and that should give the value, \\
+\begin{table}[ht]
+	\centering
+	\scalebox{0.85}
+	{
+	\begin{tabular}{|K{5cm} | K{5cm}|}
+	\toprule
+	\rowcolor{Gray}
+	\textbf{Part NUMBER} & \textbf{Part VERSION} \\
+	\hline
+	1 & 48 \\
+	\bottomrule
+	\end{tabular}
+	}
+	\caption{Value to be read from SPIRIT}
+\end{table}
 
 
 

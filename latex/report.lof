@@ -1,8 +1,8 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces STMicroelectronics Pvt. Ltd., Greator Noida}}{1}{figure.1.1}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces STMicroelectronics Pvt. Ltd., Greater Noida}}{1}{figure.1.1}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces atmel transceiver}}{5}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Microchip transceiver}}{6}{figure.2.2}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Microchip transceiver}}{5}{figure.2.2}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Texas transceiver}}{6}{figure.2.3}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Star topology}}{11}{figure.3.1}
@@ -26,4 +26,12 @@
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Source Browsing through Cscope}}{41}{figure.4.4}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Logic Analyzer}}{43}{figure.4.5}
 \contentsline {figure}{\numberline {4.6}{\ignorespaces enable the SPI in RPI2 board}}{44}{figure.4.6}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Entry in dts}}{45}{figure.4.7}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Interfacing between RPI2 and SPIRIT1}}{46}{figure.4.8}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Raspberry PI output on logic Analyzer}}{46}{figure.4.9}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Linux kernel architecture}}{49}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Interfacing between LED board and RPI2}}{50}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Hardware setup between LED7708 and RPI2 board}}{51}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Wave form for the example script}}{54}{figure.5.4}
 \addvspace {10\p@ }

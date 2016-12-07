@@ -1,0 +1,26 @@
+\chapter{Conclusion and Future Scope}
+\section{Conclusion}
+I have learnt a great deal working on this project. The learning was not limited to project only but the whole experience of working as an intern in a multinational company like STMicroelectronics was immensely educational. Being an intern, one is always challenged by the fundamental difference between classroom coaching and real industrial experience. But such a challenge is exactly the purpose of six months training.\\
+The whole experience of working on this project and contributing in a few others has been very rewarding as it has given great opportunities to learn new things and get a firmer grasp on already known technologies. Here is a reiteration of some of the technologies I have encountered, browsed and learnt:
+\begin{itemize}
+	\item Operating System: \textbf{Linux}
+	\item Language: \textbf{C}
+	\item Development Host: \textbf{Raspberry Pi}, \textbf{BeagleBone Black}
+	\item Integrated Build Environment: \textbf{Buildroot}
+\end{itemize}
+So during this project I learnt all the above things. Above all I got to know how software is developed and how much work and attention to details is required in building even the most basic of components of any project. Planning, designing, developing code, working in a team, testing, etc. these are all very precious lessons in themselves. 
+\section{Future Scope}
+SPIRIT is a relatively new technology. This implies that there is a long road ahead of more features, more research and more hardware for this technology. As such there is always room for inclusion in the Linux kernel for all of this. If the completely new hardware is introduced then it becomes very important to have its driver included in Linux. This is not just have the support for the device in Linux but it also acts like an endorsement for the device that its driver has been registered with the coveted Linux kernel.\\
+Talking specifically about some of the other solutions by ST, following two come to immediate consideration that can also be driven by a Linux host by means of device driver written in a manner much similar to SPIRIT:
+\begin{enumerate}
+	\item \textbf{SPIRIT 1}
+	\item \textbf{SPIRIT 2}
+\end{enumerate}
+The continuous need for more software related to SPIRIT in Linux is not just restricted to device driver development. WPAN is the official stack for Linux but even it does not implement everything in the WPAN we have to include the features of the IEEE 802.15.4. Some features are missing and are intended for the future. Also since with new specification releases, more and more features get introduced into the technology. So the stack will also have to sustain with the specification. Some of the things that are not yet implemented in WPAN but are part of the IEEE 802.15.4:
+\begin{itemize}
+	\item New netlink framework nl802154 
+	\item Privacy
+	\item IEEE802154 cryptography layer on top of nl802154
+	\item Improvements in frame parsing and creation
+	\item Better connection management between linux and other OS like contiki
+\end{itemize}

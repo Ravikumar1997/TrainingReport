@@ -1,11 +1,11 @@
-\contentsline {chapter}{\numberline {1}Introduction to Organiztion}{1}{chapter.1}
+\contentsline {chapter}{\numberline {1}Introduction to Organization}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Introduction to Project}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Overview}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Existing system}{4}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}ATMEL at86rf230}{4}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Microchip mrf24j40}{5}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Texas CC2520}{6}{subsection.2.2.3}
-\contentsline {section}{\numberline {2.3}Requirement Analysis}{7}{section.2.3}
+\contentsline {section}{\numberline {2.3}Requirement Analysis}{6}{section.2.3}
 \contentsline {section}{\numberline {2.4}Feasbility Study}{7}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Does SPIRIT support what wpan offers?}{7}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Does Linux supports what SPIRIT used to communicate?}{8}{subsection.2.4.2}
@@ -18,12 +18,12 @@
 \contentsline {subsubsection}{\numberline {3.1.2.2}Host}{10}{subsubsection.3.1.2.2}
 \contentsline {subsubsection}{\numberline {3.1.2.3}Controller}{10}{subsubsection.3.1.2.3}
 \contentsline {subsection}{\numberline {3.1.3}IEEE 802.15.4 Network Topologies}{10}{subsection.3.1.3}
-\contentsline {subsubsection}{\numberline {3.1.3.1}Star Topology}{11}{subsubsection.3.1.3.1}
+\contentsline {subsubsection}{\numberline {3.1.3.1}Star Topology}{10}{subsubsection.3.1.3.1}
 \contentsline {subsubsection}{\numberline {3.1.3.2}Peer to Peer Topology}{11}{subsubsection.3.1.3.2}
 \contentsline {subsection}{\numberline {3.1.4}Network formation}{12}{subsection.3.1.4}
 \contentsline {subsubsection}{\numberline {3.1.4.1}Star network formation}{12}{subsubsection.3.1.4.1}
 \contentsline {subsubsection}{\numberline {3.1.4.2}Peer to Peer network formation}{12}{subsubsection.3.1.4.2}
-\contentsline {section}{\numberline {3.2}IEEE 802.15.5 Architecture}{13}{section.3.2}
+\contentsline {section}{\numberline {3.2}IEEE 802.15.4 Architecture}{13}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Physical layer}{14}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Operating frequency range}{15}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}Medium Acess Control}{15}{subsection.3.2.3}
@@ -50,11 +50,11 @@
 \contentsline {chapter}{\numberline {4}Development and Implementation}{31}{chapter.4}
 \contentsline {section}{\numberline {4.1}The Linux Kernel}{31}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}The Linux Device Driver Model}{31}{subsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.1.1}Overview}{32}{subsubsection.4.1.1.1}
+\contentsline {subsubsection}{\numberline {4.1.1.1}Overview}{31}{subsubsection.4.1.1.1}
 \contentsline {subsubsection}{\numberline {4.1.1.2}Driver Model}{32}{subsubsection.4.1.1.2}
-\contentsline {subsection}{\numberline {4.1.2}Overview of SPI support in Linux}{34}{subsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.2.1}What is SPI?}{34}{subsubsection.4.1.2.1}
-\contentsline {subsubsection}{\numberline {4.1.2.2}Who uses SPI?}{35}{subsubsection.4.1.2.2}
+\contentsline {subsection}{\numberline {4.1.2}Overview of SPI support in Linux}{33}{subsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.2.1}What is SPI?}{33}{subsubsection.4.1.2.1}
+\contentsline {subsubsection}{\numberline {4.1.2.2}Who uses SPI?}{34}{subsubsection.4.1.2.2}
 \contentsline {subsubsection}{\numberline {4.1.2.3}The SPI programming interface}{35}{subsubsection.4.1.2.3}
 \contentsline {section}{\numberline {4.2}The C Programming Language}{36}{section.4.2}
 \contentsline {section}{\numberline {4.3}Development Boards}{37}{section.4.3}
@@ -70,9 +70,23 @@
 \contentsline {section}{\numberline {4.5}Testing}{44}{section.4.5}
 \contentsline {subsection}{\numberline {4.5.1}Enable the SPI in RPI2 board}{44}{subsection.4.5.1}
 \contentsline {subsubsection}{\numberline {4.5.1.1}Make the entry in dts}{44}{subsubsection.4.5.1.1}
-\contentsline {subsection}{\numberline {4.5.2}Interfacing between RPI2 and SPSGRF(SPIRIT1)}{44}{subsection.4.5.2}
-\contentsline {subsection}{\numberline {4.5.3}Test using logic Analyzer}{45}{subsection.4.5.3}
-\contentsline {subsection}{\numberline {4.5.4}Test the hardware}{45}{subsection.4.5.4}
-\contentsline {chapter}{\numberline {5}Conclusion and Future Scope}{46}{chapter.5}
-\contentsline {section}{\numberline {5.1}Conclusion}{46}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future Scope}{47}{section.5.2}
+\contentsline {subsection}{\numberline {4.5.2}Interfacing between RPI2 and SPSGRF(SPIRIT1)}{45}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Test using logic Analyzer}{46}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}Test the hardware}{47}{subsection.4.5.4}
+\contentsline {chapter}{\numberline {5}Testing of the driver of LED7708}{48}{chapter.5}
+\contentsline {section}{\numberline {5.1}LED7708 Introduction}{48}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}LED7708 read/write protocols}{48}{subsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.1.1}Serial interface internal registers}{48}{subsubsection.5.1.1.1}
+\contentsline {subsection}{\numberline {5.1.2}LED7708 Linux device driver}{49}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}Interfacing of the LED7708 with RPI2 board}{50}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Hardware setup}{50}{subsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.1.1}Hardware connection between LED7708 and RPI2 board}{50}{subsubsection.5.2.1.1}
+\contentsline {subsubsection}{\numberline {5.2.1.2}Hardware Setup between RPI2 and LED7708 Eval board}{51}{subsubsection.5.2.1.2}
+\contentsline {subsection}{\numberline {5.2.2}Software setup}{51}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Adding Linux Device driver support in the linux kernel}{52}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Adding Device tree bindings for LED7708 device driver}{52}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Adding Linux driver in the kernel - Out of the tree}{53}{subsection.5.3.2}
+\contentsline {section}{\numberline {5.4}Insert the modules}{53}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusion and Future Scope}{55}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusion}{55}{section.6.1}
+\contentsline {section}{\numberline {6.2}Future Scope}{55}{section.6.2}
