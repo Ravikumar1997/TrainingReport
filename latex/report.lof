@@ -10,14 +10,14 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Cluster network}}{13}{figure.3.3}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces IEEE 802.15.4}}{14}{figure.3.4}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces MAC Sublayer reference model}}{16}{figure.3.5}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces 6 Lowpan over IEEE}}{18}{figure.3.6}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces 6 LoWPAN over IEEE}}{18}{figure.3.6}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Fragmentation and defragmentation}}{20}{figure.3.7}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces WPAN the officila SPIRIT stack of Linux}}{22}{figure.3.8}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces WPAN the official S2-LP stack of Linux}}{22}{figure.3.8}
 \contentsline {figure}{\numberline {3.9}{\ignorespaces Linux-WPAN}}{23}{figure.3.9}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Block diagram of SPIRIT}}{25}{figure.3.10}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces spirit1/spirit2 protocol stack}}{26}{figure.3.11}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Pin configuration of SPIRIT2}}{27}{figure.3.12}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Operating modes of spirit}}{30}{figure.3.13}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Block diagram of S2-LP}}{25}{figure.3.10}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces SPIRIT1/S2-LP protocol stack}}{26}{figure.3.11}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Pin configuration of S2-LP}}{27}{figure.3.12}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Operating modes of SPIRIT1}}{30}{figure.3.13}
 \contentsline {figure}{\numberline {3.14}{\ignorespaces Spirit opearting modes summary}}{30}{figure.3.14}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Raspberry Pi 2}}{38}{figure.4.1}

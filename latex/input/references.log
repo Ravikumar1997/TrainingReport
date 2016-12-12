@@ -1,0 +1,258 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.28)  12 DEC 2016 14:42
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**references.tex
+(./references.tex
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+
+! LaTeX Error: Environment thebibliography undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \begin{thebibliography}
+                           {9}
+? 
+! Interruption.
+\GenericError  ...                                
+                                                  \endgroup 
+l.1 \begin{thebibliography}
+                           {9}
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \begin{thebibliography}{9
+                             }
+? 
+Missing character: There is no 9 in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--2
+[] 
+ []
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2 	\bibitem{IEEE 802.15.4}
+                            \textbf{IEEE802.15.4 specification}\\\textit{htt...
+
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.2 	\bibitem{IEEE 802.15.4}
+                            \textbf{IEEE802.15.4 specification}\\\textit{htt...
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.2 	\bibitem{IEEE 802.15.4}
+                            \textbf{IEEE802.15.4 specification}\\\textit{htt...
+
+? 
+\bibcite{IEEE 802.15.4}{0}
+
+Overfull \hbox (67.91629pt too wide) in paragraph at lines 2--3
+\OT1/cmr/bx/n/10 IEEE802.15.4
+ []
+
+
+Overfull \hbox (25.45958pt too wide) in paragraph at lines 2--3
+\OT1/cmr/bx/n/10 spec-
+ []
+
+
+Overfull \hbox (7.02774pt too wide) in paragraph at lines 2--3
+\OT1/cmr/bx/n/10 i-
+ []
+
+
+Overfull \hbox (10.22217pt too wide) in paragraph at lines 2--3
+\OT1/cmr/bx/n/10 fi-
+ []
+
+
+Overfull \hbox (14.53462pt too wide) in paragraph at lines 2--3
+\OT1/cmr/bx/n/10 ca-
+ []
+
+
+Overfull \hbox (19.80545pt too wide) in paragraph at lines 2--3
+\OT1/cmr/bx/n/10 tion 
+ []
+
+
+Overfull \hbox (246.09834pt too wide) in paragraph at lines 2--3
+\OT1/cmr/m/it/10 http://standards.ieee.org/getieee802/download/802.15.4-
+ []
+
+
+Overfull \hbox (38.40813pt too wide) in paragraph at lines 2--3
+\OT1/cmr/m/it/10 2006.pdf 
+ []
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 	\bibitem{Driver Book}
+                          \textbf{Linux Device Drivers}, 4th edition\\
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.3 	\bibitem{Driver Book}
+                          \textbf{Linux Device Drivers}, 4th edition\\
+? 
+! Interruption.
+\value #1->\csname c@#1
+                       \endcsname 
+l.3 	\bibitem{Driver Book}
+                          \textbf{Linux Device Drivers}, 4th edition\\
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.3 	\bibitem{Driver Book}
+                          \textbf{Linux Device Drivers}, 4th edition\\
+? 
+\bibcite{Driver Book}{0}
+Missing character: There is no , in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no . in font nullfont!
+
+Overfull \hbox (28.63873pt too wide) in paragraph at lines 3--5
+\OT1/cmr/bx/n/10 Linux
+ []
+
+
+Overfull \hbox (17.92352pt too wide) in paragraph at lines 3--5
+\OT1/cmr/bx/n/10 De-
+ []
+
+
+Overfull \hbox (19.64574pt too wide) in paragraph at lines 3--5
+\OT1/cmr/bx/n/10 vice
+ []
+
+
+Overfull \hbox (37.04288pt too wide) in paragraph at lines 3--5
+\OT1/cmr/bx/n/10 Drivers
+ []
+
+
+Overfull \hbox (40.26086pt too wide) in paragraph at lines 3--5
+\OT1/cmr/m/it/10 Jonathan
+ []
+
+
+Overfull \hbox (20.06096pt too wide) in paragraph at lines 3--5
+\OT1/cmr/m/it/10 Cor-
+ []
+
+
+Overfull \hbox (15.07764pt too wide) in paragraph at lines 3--5
+\OT1/cmr/m/it/10 bet,
+ []
+
+
+Overfull \hbox (36.82198pt too wide) in paragraph at lines 3--5
+\OT1/cmr/m/it/10 Alessan-
+ []
+
+
+Overfull \hbox (13.92767pt too wide) in paragraph at lines 3--5
+\OT1/cmr/m/it/10 dro
+ []
+
+
+Overfull \hbox (15.98322pt too wide) in paragraph at lines 3--5
+\OT1/cmr/m/it/10 Ru-
+ []
+
+
+Overfull \hbox (16.35545pt too wide) in paragraph at lines 3--5
+\OT1/cmr/m/it/10 bini
+ []
+
+
+Overfull \hbox (20.13037pt too wide) in paragraph at lines 3--5
+\OT1/cmr/m/it/10 Greg
+ []
+
+
+Overfull \hbox (29.79422pt too wide) in paragraph at lines 3--5
+\OT1/cmr/m/it/10 Kroah-
+ []
+
+
+Overfull \hbox (38.9942pt too wide) in paragraph at lines 3--5
+\OT1/cmr/m/it/10 Hartman 
+ []
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 	\bibitem{Linux kernel Documentation}
+                                         \textbf{Linux Kernel Documentation ...
+
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.5 	\bibitem{Linux kernel Documentation}
+                                         \textbf{Linux Kernel Documentation ...
+
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+ 
+Here is how much of TeX's memory you used:
+ 13 strings out of 493304
+ 365 string characters out of 6139870
+ 52880 words of memory out of 5000000
+ 3569 multiletter control sequences out of 15000+600000
+ 4294 words of font info for 16 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 13i,1n,10p,168b,90s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

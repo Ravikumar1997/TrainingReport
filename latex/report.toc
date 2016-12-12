@@ -7,8 +7,8 @@
 \contentsline {subsection}{\numberline {2.2.3}Texas CC2520}{6}{subsection.2.2.3}
 \contentsline {section}{\numberline {2.3}Requirement Analysis}{6}{section.2.3}
 \contentsline {section}{\numberline {2.4}Feasbility Study}{7}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Does SPIRIT support what wpan offers?}{7}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Does Linux supports what SPIRIT used to communicate?}{8}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.1}Does SPIRIT1 and S2-LP support what WPAN offers?}{7}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Does Linux supports what SPIRIT1 used to communicate?}{8}{subsection.2.4.2}
 \contentsline {section}{\numberline {2.5}Objectives of the Project}{8}{section.2.5}
 \contentsline {chapter}{\numberline {3}Product Design}{9}{chapter.3}
 \contentsline {section}{\numberline {3.1}Wireless Personal Area Network}{9}{section.3.1}
@@ -38,13 +38,13 @@
 \contentsline {subsection}{\numberline {3.3.3}Addressing Modes}{19}{subsection.3.3.3}
 \contentsline {subsection}{\numberline {3.3.4}Maximum transmission Unit}{19}{subsection.3.3.4}
 \contentsline {subsection}{\numberline {3.3.5}Security of IPv6}{21}{subsection.3.3.5}
-\contentsline {section}{\numberline {3.4}WPAN The officila Linux SPIRIT stack}{21}{section.3.4}
+\contentsline {section}{\numberline {3.4}WPAN The official Linux S2-LP stack}{21}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}History}{22}{subsection.3.4.1}
-\contentsline {section}{\numberline {3.5}SPIRIT2}{24}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Block diagram of SPIRIT2}{24}{subsection.3.5.1}
+\contentsline {section}{\numberline {3.5}S2-LP}{24}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Block diagram of S2-LP}{24}{subsection.3.5.1}
 \contentsline {subsection}{\numberline {3.5.2}SPIRIT1}{25}{subsection.3.5.2}
-\contentsline {subsection}{\numberline {3.5.3}SPIRIT1/SPIRIT2 Protocol Stack}{26}{subsection.3.5.3}
-\contentsline {subsection}{\numberline {3.5.4}Pin Diagram of SPIRIT2}{27}{subsection.3.5.4}
+\contentsline {subsection}{\numberline {3.5.3}SPIRIT1/S2-LP Protocol Stack}{26}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.4}Pin Diagram of S2-LP}{27}{subsection.3.5.4}
 \contentsline {subsection}{\numberline {3.5.5}Pin Description}{27}{subsection.3.5.5}
 \contentsline {subsection}{\numberline {3.5.6}Operating Modes}{29}{subsection.3.5.6}
 \contentsline {chapter}{\numberline {4}Development and Implementation}{31}{chapter.4}
@@ -63,11 +63,11 @@
 \contentsline {section}{\numberline {4.4}Tools used}{39}{section.4.4}
 \contentsline {subsection}{\numberline {4.4.1}Buildroot}{39}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}Cscope}{40}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}VIM}{41}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.3}VIM}{42}{subsection.4.4.3}
 \contentsline {subsection}{\numberline {4.4.4}Logic Analyzer}{42}{subsection.4.4.4}
 \contentsline {subsection}{\numberline {4.4.5}Programming interface}{43}{subsection.4.4.5}
 \contentsline {subsubsection}{\numberline {4.4.5.1}SYSFS programming Interface}{43}{subsubsection.4.4.5.1}
-\contentsline {section}{\numberline {4.5}Testing}{44}{section.4.5}
+\contentsline {section}{\numberline {4.5}Testing}{43}{section.4.5}
 \contentsline {subsection}{\numberline {4.5.1}Enable the SPI in RPI2 board}{44}{subsection.4.5.1}
 \contentsline {subsubsection}{\numberline {4.5.1.1}Make the entry in dts}{44}{subsubsection.4.5.1.1}
 \contentsline {subsection}{\numberline {4.5.2}Interfacing between RPI2 and SPSGRF(SPIRIT1)}{45}{subsection.4.5.2}
@@ -83,8 +83,8 @@
 \contentsline {subsubsection}{\numberline {5.2.1.1}Hardware connection between LED7708 and RPI2 board}{50}{subsubsection.5.2.1.1}
 \contentsline {subsubsection}{\numberline {5.2.1.2}Hardware Setup between RPI2 and LED7708 Eval board}{51}{subsubsection.5.2.1.2}
 \contentsline {subsection}{\numberline {5.2.2}Software setup}{51}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Adding Linux Device driver support in the linux kernel}{52}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Adding Device tree bindings for LED7708 device driver}{52}{subsection.5.3.1}
+\contentsline {section}{\numberline {5.3}Adding Linux Device driver support in the Linux kernel}{52}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Adding Device tree bindings for LED7708 device driver}{53}{subsection.5.3.1}
 \contentsline {subsection}{\numberline {5.3.2}Adding Linux driver in the kernel - Out of the tree}{53}{subsection.5.3.2}
 \contentsline {section}{\numberline {5.4}Insert the modules}{53}{section.5.4}
 \contentsline {chapter}{\numberline {6}Conclusion and Future Scope}{55}{chapter.6}

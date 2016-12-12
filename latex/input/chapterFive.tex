@@ -78,7 +78,7 @@ diagram shown in figure below.
 \subsubsection{Hardware Setup between RPI2 and LED7708 Eval board}
 \begin{figure}[ht]
          \centering
-         \includegraphics[scale=0.3]{images/raspberryledsetup.png}
+         \includegraphics[scale=0.4]{images/raspberryledsetup.png}
          \caption{Hardware setup between LED7708 and RPI2 board}
 \end{figure}
 \subsection{Software setup}
@@ -98,7 +98,7 @@ version.
 	Download Raspberry PI cross-compilers by running the following command on your build
 	machine.\\
 	git clone https://github.com/raspberrypi/tools\\
-	\item Configuring the kernel
+	\item Configuring the kernel \\
 	cd linux\\
 	KERNEL=kernel7\\
 	make ARCH=arm CROSS\_COMPILE=arm-linux-gnueabihf- bcm2709$_$defconfig
@@ -124,15 +124,15 @@ version.
 		to remove it from the computer.
 	\end{itemize}
 \end{enumerate}
-\section{Adding Linux Device driver support in the linux kernel}
-Adding a LDD support in the linux kernel means adding its source code in the linux kernel. This
+\section{Adding Linux Device driver support in the Linux kernel}
+Adding a LDD support in the Linux kernel means adding its source code in the Linux kernel. This
 can be done either dynamically (building the driver as a module – out of the tree kernel
 building) or by compiling the driver along with the kernel sources (in built driver). Also before
 that Hardware (LED7708) specific parameters (like interface signals with the Raspberry PI)
 needs to be defined to the kernel in the device tree of the platform in which LED7708 needs to
 be interfaced.
 \subsection{Adding Device tree bindings for LED7708 device driver}
-Adding Device tree bindings for the Led7708 linux driver.\\
+Adding Device tree bindings for the Led7708 Linux driver.\\
 In $<$path\_to\_kernel$>$/arch/arm/boot/dts/\\
 nano bcm2709-rpi-2-b.dts\\
 In this file make the entry for the led7708 board in the led class.\\
@@ -152,7 +152,7 @@ clean:\\
 \section{Insert the modules}
 Modules can be inserted using the commands \\
 insmod leds-st.ko\\
-Once the module is inserted successfully you can see the sysfs being created which you can access
+Once the module is inserted successfully you can see the sysfs being created in the led directory and there is the sixteen channels for the leds class which you can access
 directly and build your application by accessing them.\\
 Example wave forms for the below sequence of commads:\\
 \begin{itemize}

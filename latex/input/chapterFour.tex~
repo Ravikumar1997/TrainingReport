@@ -70,7 +70,7 @@ The Foundation provides Raspbian, a Debian-based Linux distribution for download
 The Raspberry Pi 3 model was used for preliminary development of this driver.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=4.0in, height=3.2in]{images/raspberry_pi.png}
+	\includegraphics[width=3.5in, height=3in]{images/raspberry_pi.png}
 	\caption{Raspberry Pi 2}
 \end{figure}
 \subsection{BeagleBone Black}
@@ -101,7 +101,7 @@ In software development it is often very useful to be able to find the callers o
 cscope was created to search content within C files, but it can also be used (with some limits) for C++ and Java files.
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.8]{images/cscope.png}
+	\includegraphics[scale=0.5]{images/cscope.png}
 	\caption{Source Browsing through Cscope}
 \end{figure}
 \subsection{VIM}
@@ -119,22 +119,22 @@ Some basic commands are :
 A logic analyzer is an electronic instrument that captures and displays multiple signals from a digital system or digital circuit. A logic analyzer may convert the captured data into timing diagrams, protocol decodes, state machine traces, assembly language, or may correlate assembly with source-level software. Logic Analyzers have advanced triggering capabilities, and are useful when a user needs to see the timing relationships between many signals in a digital system.\\
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.45]{images/logic_analyzer.png}
+	\includegraphics[scale=0.3]{images/logic_analyzer.png}
 	\caption{Logic Analyzer}
 \end{figure}
 \subsection{Programming interface}
 \subsubsection{SYSFS programming Interface}
 sysfs is a pseudo file system provided by the Linux kernel that exports information about various kernel subsystems, hardware devices, and associated device drivers from the kernel's device model to user space through virtual files. In addition to providing information about various devices and kernel subsystems, exported virtual files are also used for their configuring. sysfs provides functionality similar to the sysctl mechanism found in BSD operating systems, with the difference that sysfs is implemented as a virtual file system instead of being a purpose-built kernel mechanism. Sysfs is used by several utilities to access information about hardware and its driver (kernel modules) such as udev or HAL. Scripts have been written to access information previously obta For every kobject that is registered with the system, a directory is created for it in sysfs. That directory is created as a subdirectory of the kobject's parent, expressing internal object hierarchies to userspace. %Top-level directories in sysfs represent the common ancestors of object hierarchies; i.e. the subsystems the objects belong to. Sysfs internally stores a pointer to the kobject that implements a directory in the kernfs_node object associated with the directory. In the past this kobject pointer has been used by sysfs to do reference counting directly on the kobject whenever the file is opened or closed. With the current sysfs implementation the kobject reference count is only modified directly by the function sysfs_schedule_callback().%
 \section{Testing}
-The driver job is to send the commands from the one device to another one and getting back its response. If all this happen sucessfully then that should means that the one SPIRIT1 is able to communicate with another SPIRIT1.\\
-For testing the SPIRIT1 we have to do the following procedure:
+The driver job is to send the commands from the one SPIRIT to another one and getting back its response. if all this happen sucessfully then that should means that the SPIRIT is able to communicate with another SPIRIT.\\
+For testing the SPIRIT we have to do the following procedure:
 \subsection{Enable the SPI in RPI2 board}
 	\begin{enumerate}
 		\item To enable the SPI in raspberry PI board. Run the following command.
 			\textbf{sudo raspi-config}
 			\begin{figure}[ht]
 				\centering
-				\includegraphics[scale=1.3]{images/spi.png}
+				\includegraphics[scale=1.2]{images/spi.png}
 				\caption{enable the SPI in RPI2 board}
 			\end{figure}
 		\item Select the Advanced boot option
@@ -178,7 +178,7 @@ The SPSGRF series enables wireless connectivity in electronic devices, requiring
 		\bottomrule
 		\end{tabular}
 	}
-	\caption{RPI2 and SPIRIT1 Interfacing}
+	\caption{RPI2 and SPIRIT Interfacing}
 \end{table}
 \begin{figure}[H]
 	\centering
@@ -186,17 +186,17 @@ The SPSGRF series enables wireless connectivity in electronic devices, requiring
 	\caption{Interfacing between RPI2 and SPIRIT1}
 \end{figure}
 \subsection{Test using logic Analyzer}
-We discussed in the previous section about the logic analyzer and how it works. Now we test the SPI of SPIRIT1 using logic analyzer. It gives us an idea that the data through the SPI is going correctly or not. For that we have to connect the logic Analyzer with the SPIRIT1 board and send the data over sysfs file using command:\\
+We discussed in the previous section about the logic analyzer and how it works. Now we test the SPI of SPIRIT using logic analyzer. It gives us an idea that the data through the SPI is going correctly or not. For that we have to connect the logic Analyzer with the SPIRIT board and send the data over sysfs file using command:\\
 \textbf{echo FF $>$ filename}\\
 Run the above command and notice the data over logic analyzer. It gives:
-After the data through the SPI is flowing correctly. Now we have to send the commands for the SPIRIT1 to become ready. For that we send the command 0x03 over SPI after that SPIRIT1 become ready to accept the data. 
+After the data through the SPI is flowing correctly. Now we have to send the commands for the SPIRIT to become ready. For that we send the command 0x03 over SPI after that SPIRIT become ready to accept the data. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4.5in, height=2.5in]{images/raspberryoutput.png}
 	\caption{Raspberry PI output on logic Analyzer}
 \end{figure}
 \subsection{Test the hardware}
-When the SPIRIT1 become ready to accept the data. Now for the hardware verification we have to read the version info and version number of the SPIRIT1 to verify that whether our hardware is recognised by the Linux or not.\\
+When the SPIRIT become ready to accept the data. Now for the hardware verification we have to read the version info and version number of the SPIRIT to verify that whether our hardware is recognised by the Linux or not.\\
 \begin{table}[ht]
 	\centering
 	\scalebox{0.85}
@@ -228,7 +228,7 @@ When the SPIRIT1 become ready to accept the data. Now for the hardware verificat
 	\bottomrule
 	\end{tabular}
 	}
-	\caption{Value to be read from SPIRIT1}
+	\caption{Value to be read from SPIRIT}
 \end{table}
 
 

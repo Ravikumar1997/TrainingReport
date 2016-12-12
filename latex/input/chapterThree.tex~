@@ -1,19 +1,19 @@
 \chapter{Product Design}
 \section{Wireless Personal Area Network}
 WPAN \textbf{(wireless personal area network)} is a personal area network- a network for interconnecting devices centered around an individual person's workspace in which the connections are wireless. Typically, a wireless personal area network uses some technology that permits communication within about 10 meters - in other words, a very short range.\\
-Wireless PAN is based on the standard \textbf{IEEE 802.15.4}. A WPAN could serve to interconnect all the ordinary computing and communicating devices that many people have on their desk or carry with them today; or it could serve a more specialized purpose such as allowing the surgeon and other team members to communicate during an operation. There are also many other existing standard such as the IEEE802.11 which is the (wireless local area network) WLAN so why there is a need to developed the new standards so the answer is simple that it requires less power, lesser  bandwidth, has low penetration.
+Wireless PAN is based on the standard \textbf{IEEE 802.15.4}. A WPAN could serve to interconnect all the ordinary computing and communicating devices that many people have on their desk or carry with them today; or it could serve a more specialized purpose such as allowing the surgeon and other team members to communicate during an operation. There are also many other existing standard such as the IEEE802.11 which is the (wireless local area network) wlan so why there is a need to developed the new standards so the answer is simple that it requires less power, lesser  bandwidth, has low penetration.
 \subsection{Limitations}
 WPAN has been designed with some specific fundamentals that happen to serve in a lot of application fields. But this does not means  that it is not apt other kind of applications. Most of its limitations are due to the following two fundamental fact
 \begin{enumerate}
 	\item The maximum therotical throughput is i\textbf{500Kbps} which is reduces by several factors to only \textbf{5-10KBps} in most cases.
 	\item The operating range is generally \textbf{2-5 meters}. This can be extended to \textbf{30 meters} or so but that will of course demand higher strain on the battery life of the devices. This is the defining thing about the BLE technology that the devices are mostly passive in nature and hence it becomes very important for them to have large battery life. In some cases it is seen that the device’s battery can actually outlast other hardware in the device itself.
-	\item The loss of the data in WLAN goes upto \textbf{60} which is much higher than that of the WPAN ahich have only \textbf{30} data loss.
-	\item Frankly speaking, there is no much benefits of Wireless personal area network over wireless local area network \textbf{WLAN}the WLAN consumes more power because it transmits the data for a longer distance and have the throughput upto 10Mbps. WPAN useful for the short distance communication and low data transmission.
+	\item The loss of the data in Wlan goes upto \textbf{60} which is much higher than that of the wpan ahich have only \textbf{30} data loss.
+	\item Frankly speaking, there is no much benefits of Wireless personal area network over wireless local area network \textbf{WLAN}the wlan consumes more power because it transmits the data for a longer distance and have the throughput upto 10Mbps. Wpan useful for the short distance communication and low data transmission.
 \end{enumerate}
 \subsection{WPAN Architecture}
-\subsubsection{Application layer}  The upper layer containing most of the application logic, that is used to transfer the data. 6loWPAN is the mostly used upper layer.
+\subsubsection{Application layer}  The upper layer containing most of the application logic, that is used to transfer the data. 6lowpan is the mostly used upper layer.
 \subsubsection{Host} It Contains all the lower layer protocols like PHY and MAC layer in WPAN IEEE802.15.4 acts as the host.
-\subsubsection{Controller}  Linux acts as the controller for WPAN.
+\subsubsection{Controller}  Linux acts as the controller for wpan.
 We will discuseed all these layer one by one so first we start with host because it acts on the ground means it contains the RF layer.
 \subsection{IEEE 802.15.4 Network Topologies}
 Network topology defines the way in which different devices (under different roles) interact with one another to exchange data through transceiver. These topologies are defined under the specification and are maintained under the IEEE guidelines.\\
@@ -65,7 +65,7 @@ The IEEE 802.15.4 architecture is defined in terms of a number of blocks in orde
 	\includegraphics[scale=0.7]{images/ieee.png}
 	\caption{IEEE 802.15.4}
 \end{figure}
-The upper layers, shown in figure, consist of a network layer, which provides network configuration, manipulation, and message routing, and an application layer, which provides the intended function of the device. The upper layer covered by the 6loWPAN. We will discussed the upper layers function in the coming chapter.
+The upper layers, shown in figure, consist of a network layer, which provides network configuration, manipulation, and message routing, and an application layer, which provides the intended function of the device. The upper layer covered by the 6lowpan. We will discussed the upper layers function in the coming chapter.
 \subsection{Physical layer}
 The physical layer is the first layer of the Open System Interconnection Model (OSI Model). The physical layer deals with bit-level transmission between different devices and supports electrical or mechanical interfaces connecting to the physical medium for synchronized communication.\\
 The PHY is responsible for the following tasks:\\
@@ -121,8 +121,8 @@ The MAC sublayer is responsible for providing security services on specified inc
 \end{enumerate}
 A device may optionally implement security. A device that does not implement security shall not provide a mechanism for the MAC sublayer to perform any cryptographic transformation on incoming and outgoing frames nor require any PIB attributes associated with security. A device that implements security shall provide a mechanism for the MAC sublayer to provide cryptographic transformations on incoming and outgoing frames using information in the PIB attributes associated with security only if the macSecurityEnabled attribute is set to TRUE.\\
 \subsection{MAC layer advertising and scanning}
-The advertising packets are used to either broadcast data for applications or to discover slaves and to connect to them. The advertising of packets is done aftmake a entry for S2-LP in sysfs.er certain intervals and if during this interval some device is scanning then that device will be able to receive the advertising packet.\\
-The advertising packets are used to either broadcast data for applications or to discover slaves and to connect to them. The advertising of packets is done after make a entry for S2-LP in sysfs after certain intervals and if during this interval some device is scanning then that device will be able to receive the advertising packet.\\
+The advertising packets are used to either broadcast data for applications or to discover slaves and to connect to them. The advertising of packets is done aftmake a entry for SPIRIT in sysfs.er certain intervals and if during this interval some device is scanning then that device will be able to receive the advertising packet.\\
+The advertising packets are used to either broadcast data for applications or to discover slaves and to connect to them. The advertising of packets is done after make a entry for SPIRIT in sysfs after certain intervals and if during this interval some device is scanning then that device will be able to receive the advertising packet.\\
 The specification defines the two types of scanning\\
 \subsubsection{Passive Scanning}
 The scanner simply listens for advertising packets, and the advertiser is never aware of the fact that one or more packets were actually received by a scanner.
@@ -132,11 +132,11 @@ Before commencing an active or passive scan, the MAC sublayer shall store the va
 \section{Low Wireless Personal Area Network}
 The 6LoWPAN group has defined encapsulation and header compression mechanisms that allow IPv6 packets to be sent and received over IEEE 802.15.4 based networks. IPv4 and IPv6 are the work horses for data delivery for local-area networks, metropolitan area networks, and wide-area networks such as the Internet. Likewise, IEEE 802.15.4 devices provide sensing communication-ability in the wireless domain. The inherent natures of the two networks though, are different.
 \subsection{Transmission of IPv6 Packets over IEEE 802.15.4 Networks}
-The 6loWPAN sits over the IEEE802.15.4 packets, which acts as the convergence layer for the packet transmission.
+The 6lowpan sits over the IEEE802.15.4 packets, which acts as the convergence layer for the packet transmission.
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=1]{images/6LoWPAN.png}
-	\caption{6 LoWPAN over IEEE}
+	\includegraphics[scale=1]{images/6lowpan.png}
+	\caption{6 Lowpan over IEEE}
 \end{figure}
 \subsection{IEEE 802.15.4 Mode over IPv6} 
 IEEE 802.15.4 defines four types of frames\\
@@ -151,7 +151,7 @@ IPv6 packets MUST be carried on data frames. Data frames may optionally request 
 IEEE 802.15.4 defines several addressing modes, it allows the use of either:\\
 1. IEEE 64-bit extended addresses or (after an association event)\\
 2. 16-bit addresses unique within the PAN.\\
-6loWPAN supports both the addresses. Short addresses being transient in nature, a word of caution is in order. Since they are doled out by the PAN coordinator function during an association event, their validity and uniqueness is limited by the lifetime of that association.
+6lowpan supports both the addresses. Short addresses being transient in nature, a word of caution is in order. Since they are doled out by the PAN coordinator function during an association event, their validity and uniqueness is limited by the lifetime of that association.
 \subsection{Maximum transmission Unit}
 The MTU size for IPv6 packets over IEEE 802.15.4 is 1280 octets. However, a full IPv6 packet does not fit in an IEEE 802.15.4 frame. 802.15.4 protocol data units have different sizes depending on how much overhead is present.  Starting from a maximum physical layer packet size of 127 octets (aMaxPHYPacketSize) and a maximum frame overhead of 25 (aMaxFrameOverhead), the resultant maximum frame size at the media access control layer is 102 octets. Link-layer security imposes further overhead, which in the maximum case (21 octets of overhead in the AES-CCM-128 case, versus 9 and 13 for AES-CCM-32 and AES-CCM-64, respectively) leaves only 81 octets available.  This is obviously far below the minimum IPv6 packet size of 1280 octets. Furthermore, since the IPv6 header is 40 octets long, this leaves only 41 octets for upper-layer protocols, like UDP.  The latter uses 8 octets in the header which leaves only 33 octets for application data.  Additionally, there is a need for a fragmentation and reassembly layer, which will use even more octets.\\
 \begin{enumerate}
@@ -169,21 +169,21 @@ The MTU size for IPv6 packets over IEEE 802.15.4 is 1280 octets. However, a full
 \end{figure}
 \subsection{Security of IPv6}
 The method of derivation of Interface Identifiers from EUI-64 MAC addresses is intended to preserve global uniqueness when possible. However, there is no protection from duplication through accident or forgery. Neighbor Discovery in IEEE 802.15.4 links may be susceptible to threats.  Mesh routing is expected to be common in IEEE 802.15.4 networks. This implies additional threats due to ad hoc routing.  IEEE 802.15.4 provides some capability for link-layer security. Users are urged to make use of such provisions if at all possible and practical.  Doing so will alleviate the threats stated above. \\A sizeable portion of IEEE 802.15.4 devices is expected to always communicate within their PAN (i.e., within their link, in IPv6 terms).  In response to cost and power consumption considerations, and in keeping with the IEEE 802.15.4 model of "Reduced Function Devices" (RFDs), these devices will typically implement the minimum set of features necessary.  Accordingly, security for such devices may rely quite strongly on the mechanisms defined at the link layer by IEEE 802.15.4.  The latter, however, only defines the Advanced Encryption Standard (AES) modes for authentication or encryption of IEEE 802.15.4 frames, and does not, in particular, specify key management (presumably group oriented).  Other issues to address in real deployments relate to secure configuration and management. Whereas such a complete picture is out of the scope of this document, it is imperative that IEEE 802.15.4 networks be deployed with such  considerations in mind.  Of course, it is also expected that some IEEE 802.15.4 devices (the so-called "Full Function Devices", or "FFDs") will implement coordination or integration functions.  These may communicate regularly with off-link IPv6 peers (in addition to the more common on-link exchanges).  Such IPv6 devices are expected to secure their end-to-end communications with the usual mechanisms (e.g., IPsec, TLS, etc).
-\section{WPAN The official Linux S2-LP stack}
+\section{WPAN The official Linux SPIRIT stack}
 \textbf{WPAN}is the official Linux personal area protocol stack. It is an Open Source project distributed under the GNU General Public License (GPL).
 \begin{figure}[ht]
 	\centering
 	\includegraphics[scale=1]{images/linux.png}
-	\caption{WPAN the official S2-LP stack of Linux}
+	\caption{WPAN the official SPIRIT stack of Linux}
 \end{figure}
 \subsection{History}
-The linux-WPAN project was started in 2008. Initially, it was started with the name of linux-zigbee but this name is little confusing because there is no zigbee protocol at all and  Linux is an open source wheras zigbee is managed by zigbee community. The lower layer consist of the PHY and MAC layer as we discussed above and the transport layer consist of the Zigbee protocol.
+The linux-wpan project was started in 2008. Initially, it was started with the name of linux-zigbee but this name is little confusing because there is no zigbee protocol at all and  linux is an open source wheras zigbee is managed by zigbee community. The lower layer consist of the PHY and MAC layer as we discussed above and the transport layer consist of the Zigbee protocol.
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.8]{images/WPAN.png}
+	\includegraphics[scale=0.8]{images/wpan.png}
 	\caption{Linux-WPAN}
 \end{figure}
-Mainly Community slowly took over and the new open standard was formed to avoid confusion with the name linux-WPAN and the new maintainer were Alexander Aring and Pengutronix. Now there are many higher layer protocols which make the use of IEEE 802.15.4 profiles.\\
+Mainly Community slowly took over and the new open standard was formed to avoid confusion with the name linux-wpan and the new maintainer were Alexander Aring and Pengutronix. Now there are many higher layer protocols which make the use of IEEE 802.15.4 profiles.\\
 These are discussed below:\\
 \begin{enumerate}
 	\item{Zigbee}
@@ -205,20 +205,20 @@ But many of the protocols of the linux-WPAN is taken from the linux-WLAN. If we 
 	\begin{tabular}{|K{2.2cm} | K{8cm} | K{2.2cm}|}
 		\toprule
 		\rowcolor{Gray}
-		\textbf{WPAN} & \textbf{Description} & \textbf{WLAN} \\
+		\textbf{wpan} & \textbf{Description} & \textbf{wlan} \\
 		\hline
-		WLAN & Default interfacing naming & WPAN \\
+		wlan & Default interfacing naming & wpan \\
 		\hline
 		station & Default interfacing type registration & node \\
 		\hline
-		iw & command framework & iWPAN \\
+		iw & command framework & iwpan \\
 		\hline
 		nl80211 & Netlink kernel framework & nl802154 \\
 		\hline
 		cfg80211 & Soft and Hard-MAC Interface & cfg802154 \\
 		\bottomrule
 	\end{tabular}}
-	\caption{WLAN and WPAN framework}
+	\caption{wlan and wpan framework}
 \end{table}
 \section{S2-LP}
 The S2-LP is a narrow band ultra-low power RF transceiver, intended for RF wireless applications in the sub-1 GHz band. It is designed to operate in both the license-free ISM and SRD frequency bands at 433,868 and 920 MHz, but can also be programmed to operate at other additional frequencies in the 430-470 MHz, 860-940 MHz bands. The S2-LP supports different modulation schemes: 2(G)FSK, 4(G)FSK, OOK and ASK. The air data rate is programmable from 0.3 to 500 kbps. The S2-LP can be used in systems with channel spacing of 12.5/25 kHz, complying with the EN 300 220 standard and satisfying the latest FCC narrow banding mandate.
@@ -235,7 +235,7 @@ The S2-LP supports frequency hopping, TX/RX and antenna diversity switch control
 \begin{figure}[ht]
 	\centering
 	\includegraphics[scale=0.8]{images/spirit.png}
-	\caption{Block diagram of S2-LP}
+	\caption{Block diagram of SPIRIT}
 \end{figure}
 \subsection{SPIRIT1}
 The SPIRIT1 is a very low-power RF transceiver, intended for RF wireless applications in the sub-1 GHz band. It is designed to operate both in the license-free ISM and SRD frequency bands at 169, 315, 433, 868, and 915 MHz, but can also be programmed to operate at other additional frequencies in the 300-348 MHz, 387-470 MHz, and 779-956 MHz bands. The air data rate is programmable from 1 to 500 kbps, and the SPIRIT1 can be used in systems with channel spacing of 12.5/25 kHz, complying with the EN 300 220 standard. It uses a very small number of discrete external components and integrates a configurable baseband modem, which supports data management, modulation, and demodulation.\\
@@ -313,11 +313,11 @@ Architecture of SPIRIT1 is similar to S2-LP except it does not follows IEEE 802.
 		24 & VR DIG & Analog in/out & 1.2 V supply for decoupling\\
 	\bottomrule
 	\end{tabular}}
-	\caption{SPIRIT1 pin description}
+	\caption{SPIRIT pin description}
 \end{table}
 In this Report we mainly focused for the SPIRIT1 driver writing because I wrote the Driver for SPIRIT1, as we discussed in the previous section that the SPIRIT1 and S2-LP architecture are same except the IEEE protocols.
 \subsection{Operating Modes}
-Several operating modes are defined for the SPIRIT1:
+Several operating modes are defined for the SPIRIT:
 \begin{itemize}
 	\item Reset Mode
 	\item Sleep Mode
@@ -330,7 +330,7 @@ The SPIRIT1 is provided with a built-in main controller which controls the switc
 \begin{figure}[ht]
 	\centering
 	\includegraphics[scale=0.8]{images/modes.png}
-	\caption{Operating modes of SPIRIT1}
+	\caption{Operating modes of spirit}
 \end{figure}
 The SPIRIT1 radio control has three stable states (READY, STANDBY, LOCK) which may be defined stable, and they are accessed by the specific commands (respectively READY, STANDBY, and LOCKRX/LOCKTX), which can be left only if any other command is used. All other states are transient, which means that, in a typical configuration, the controller remains in those states, at most for any timeout timer duration. Also the READY and LOCK states behave as transients when they are not directly accessed with the specific commands (for example, when LOCK is temporarily used before reaching the TX or RX states).
 \begin{figure}[ht]
