@@ -19,9 +19,9 @@ Having hardware reliably supported by Linux means getting the driver accepted in
 The Linux driver model is different from the Windows model many IHVs are used to. But it is a consistent and compelling approach, and has been successful at supporting nearly the entire universe of computer hardware. Moreover, the vast majority of all IHVs have adapted to Linux and have thriving businesses that work with the Linux driver development model.
 \subsection{Overview of SPI support in Linux}
 \subsubsection{What is SPI?}
-The "Serial Peripheral Interface" (SPI) is a synchronous four wire serial link used to connect microcontrollers to sensors, memory, and peripherals. It's a simple "de facto" standard, not complicated enough to acquire a standardization body.  SPI uses a master/slave configuration.\\
-The three signal wires hold a clock (SCK, often on the order of 10 MHz), and parallel data lines with "Master Out, Slave In" (MOSI) or "Master In, Slave Out" (MISO) signals.  (Other names are also used.)  There are four clocking modes through which data is exchanged; mode-0 and mode-3 are most commonly used.  Each clock cycle shifts data out and data in; the clock doesn't cycle except when there is a data bit to shift.  Not all data bits are used though; not every protocol uses those full duplex capabilities.\\
-SPI masters use a fourth "chip select" line to activate a given SPI slave device, so those three signal wires may be connected to several chips in parallel.  All SPI slaves support chipselects; they are usually active low signals, labeled nCSx for slave 'x' (e.g. nCS0).  Some devices have other signals, often including an interrupt to the master. \\
+The ``Serial Peripheral Interface'' (SPI) is a synchronous four wire serial link used to connect microcontrollers to sensors, memory, and peripherals. It's a simple ``de facto'' standard, not complicated enough to acquire a standardization body.  SPI uses a master/slave configuration.\\
+The three signal wires hold a clock (SCK, often on the order of 10 MHz), and parallel data lines with ``Master Out, Slave In'' (MOSI) or ``Master In, Slave Out'' (MISO) signals.  (Other names are also used.)  There are four clocking modes through which data is exchanged; mode-0 and mode-3 are most commonly used.  Each clock cycle shifts data out and data in; the clock doesn't cycle except when there is a data bit to shift.  Not all data bits are used though; not every protocol uses those full duplex capabilities.\\
+SPI masters use a fourth ``chip select'' line to activate a given SPI slave device, so those three signal wires may be connected to several chips in parallel.  All SPI slaves support chipselects; they are usually active low signals, labeled nCSx for slave 'x' (e.g. nCS0).  Some devices have other signals, often including an interrupt to the master. \\
 Unlike serial busses like USB or SMBus, even low level protocols for SPI slave functions are usually not interoperable between vendors (except for commodities like SPI memory chips).
 \begin{itemize}
 	\item SPI may be used for request/response style device protocols, as with touchscreen sensors and memory chips.
@@ -31,13 +31,13 @@ Unlike serial busses like USB or SMBus, even low level protocols for SPI slave f
 	\item Sometimes SPI is used to daisy-chain devices, like shift registers.
 \end{itemize}
 In the same way, SPI slaves will only rarely support any kind of automatic discovery/enumeration protocol.  The tree of slave devices accessible from a given SPI master will normally be set up manually, with configuration tables.\\
-SPI is only one of the names used by such four-wire protocols, and most controllers have no problem handling "MicroWire" (think of it as half-duplex SPI, for request/response protocols), SSP ("Synchronous Serial Protocol"), PSP ("Programmable Serial Protocol"), and other related protocols.\\
-Some chips eliminate a signal line by combining MOSI and MISO, and limiting themselves to half-duplex at the hardware level. In fact some SPI chips have this signal mode as a strapping option.  These can be accessed using the same programming interface as SPI, but of course they won't handle full duplex transfers.  You may find such chips described as using "three wire" signaling: SCK, data, nCSx. (That data line is sometimes called MOMI or SISO.) \\
+SPI is only one of the names used by such four-wire protocols, and most controllers have no problem handling ``MicroWire'' (think of it as half-duplex SPI, for request/response protocols), SSP (``Synchronous Serial Protocol''), PSP (``Programmable Serial Protocol''), and other related protocols.\\
+Some chips eliminate a signal line by combining MOSI and MISO, and limiting themselves to half-duplex at the hardware level. In fact some SPI chips have this signal mode as a strapping option.  These can be accessed using the same programming interface as SPI, but of course they won't handle full duplex transfers.  You may find such chips described as using ``three wire'' signaling: SCK, data, nCSx. (That data line is sometimes called MOMI or SISO.) \\
 Microcontrollers often support both master and slave sides of the SPI protocol.  This document (and Linux) currently only supports the master side of SPI interactions.
 \subsubsection{Who uses SPI?}
-Linux developers using SPI are probably writing device drivers for embedded systems boards.  SPI is used to control external chips, and it is also a protocol supported by every MMC or SD memory card.  (The older "DataFlash" cards, predating MMC cards but using the same connectors and card shape, support only SPI.)  Some PC hardware uses SPI flash for BIOS code. \\
+Linux developers using SPI are probably writing device drivers for embedded systems boards.  SPI is used to control external chips, and it is also a protocol supported by every MMC or SD memory card.  (The older ``DataFlash'' cards, predating MMC cards but using the same connectors and card shape, support only SPI.)  Some PC hardware uses SPI flash for BIOS code. \\
 SPI slave chips range from digital/analog converters used for analog sensors and codecs, to memory, to peripherals like USB controllers or Ethernet adapters; and more. \\
-Most systems using SPI will integrate a few devices on a mainboard. Some provide SPI links on expansion connectors; in cases where no dedicated SPI controller exists, GPIO pins can be used to create a low speed "bitbanging" adapter.  Very few systems will "hotplug" an SPI controller; the reasons to use SPI focus on low cost and simple operation, and if dynamic reconfiguration is important, USB will often be a more appropriate low-pincount peripheral bus. \\
+Most systems using SPI will integrate a few devices on a mainboard. Some provide SPI links on expansion connectors; in cases where no dedicated SPI controller exists, GPIO pins can be used to create a low speed ``bitbanging'' adapter.  Very few systems will ``hotplug'' an SPI controller; the reasons to use SPI focus on low cost and simple operation, and if dynamic reconfiguration is important, USB will often be a more appropriate low-pincount peripheral bus. \\
 Many microcontrollers that can run Linux integrate one or more I/O interfaces with SPI modes. Given SPI support, they could use MMC or SD cards without needing a special purpose MMC, SD or SDIO controller.
 \subsubsection{The SPI programming interface}
 The linux/spi/spi.h header file includes kerneldoc, as does the main source code, and you should certainly read that chapter of the kernel API document.  This is just an overview, so you get the big picture before those details. \\
@@ -46,25 +46,25 @@ There are two types of SPI driver, here called: \\
 Controller drivers ... controllers may be built into System-On-Chip 	processors, and often support both Master and Slave roles. 	These drivers touch hardware registers and may use DMA. 	Or they can be PIO bitbangers, needing just GPIO pins.\\ 
 Protocol drivers ... these pass messages through the controller 	driver to communicate with a Slave or Master device on the 	other side of an SPI link. \\
 So for example one protocol driver might talk to the MTD layer to export data to filesystems stored on SPI flash like DataFlash; and others might control audio interfaces, present touchscreen sensors as input interfaces, or monitor temperature and voltage levels during industrial processing. And those might all be sharing the same controller driver.\\
-A "struct spi\_device" encapsulates the master-side interface between those two types of driver.  At this writing, Linux has no slave side programming interface. \\
+A ``struct spi\_device'' encapsulates the master-side interface between those two types of driver.  At this writing, Linux has no slave side programming interface. \\
 There is a minimal core of SPI programming interfaces, focussing on using the driver model to connect controller and protocol drivers using device tables provided by board specific initialization code.  SPI shows up in sysfs in several locations: 
 \begin{itemize}
 	\item /sys/devices/.../CTLR ... physical node for a given SPI controller 
-	\item /sys/devices/.../CTLR/spiB.C... spi\_device on bus "B", chipselect C, accessed through CTLR. 
+	\item /sys/devices/.../CTLR/spiB.C... spi\_device on bus ``B'', chipselect C, accessed through CTLR. 
 	\item /sys/bus/spi/devices/spiB.C ... symlink to that physical .../CTLR/spiB.C device 
 	\item /sys/devices/.../CTLR/spiB.C/modalias ... identifies the driver that should be used with this device (for hotplug/coldplug) 
 	\item /sys/bus/spi/drivers/D ... driver for one or more spi*.* devices 
-	\item /sys/class/spi\_master/spiB ... symlink (or actual device node) to a logical node which could hold class related state for the controller managing bus "B". All spiB.* devices share one physical SPI bus segment, with SCLK, MOSI, and MISO. 
+	\item /sys/class/spi\_master/spiB ... symlink (or actual device node) to a logical node which could hold class related state for the controller managing bus ``B''. All spiB.* devices share one physical SPI bus segment, with SCLK, MOSI, and MISO. 
 \end{itemize}
-Note that the actual location of the controller's class state depends on whether you enabled CONFIG\_SYSFS\_DEPRECATED or not.  At this time, the only class-specific state is the bus number ("B" in "spiB"), so those /sys/class entries are only useful to quickly identify busses.
+Note that the actual location of the controller's class state depends on whether you enabled CONFIG\_SYSFS\_DEPRECATED or not.  At this time, the only class-specific state is the bus number (``B'' in ``spiB''), so those /sys/class entries are only useful to quickly identify busses.
 \section{The C Programming Language}
 C is the language of the Linux kernel. Almost all of the kernel and related applications are written in C. C is of course the language of development in this project.\\
-C is a general-purpose programming language with features economy of expression, modern flow control and data structures, and a rich set of operators. C is not a ``very high level'' language, nor a ``big''one, and is not specialized to any particular area of application. But its absence of restrictions and its generality make it more convenient and effective for many tasks than supposedly more powerful languages. C was originally designed for and implemented on the UNIX operating system on the DEC PDP-11, by Dennis Ritchie. The operating system, the C compiler, and essentially all UNIX applications programs (including all of the software used to prepare this book) are written in C. Production compilers also exist for several other machines, including the IBM System/370, the Honeywell 6000, and the Interdata 8/32. C is not tied to any particular hardware or system, however, and it is easy to write programs that will run without change on any machine that supports C.\\
+C is a general-purpose programming language with features economy of expression, modern flow control and data structures, and a rich set of operators. C is not a ``very high level'', language, nor a big one, and is not specialized to any particular area of application. But its absence of restrictions and its generality make it more convenient and effective for many tasks than supposedly more powerful languages. C was originally designed for and implemented on the UNIX operating system on the DEC PDP-11, by Dennis Ritchie. The operating system, the C compiler, and essentially all UNIX applications programs (including all of the software used to prepare this book) are written in C. Production compilers also exist for several other machines, including the IBM System/370, the Honeywell 6000, and the Interdata 8/32. C is not tied to any particular hardware or system, however, and it is easy to write programs that will run without change on any machine that supports C.\\
 The C language has a very simple structure and hence is much easily converted into machine code without any overhead that may be faced when using other languages. That is why almost all of the kernel development and device drivers are done in C language only even after the introduction of so many other versatile languages like C++.
 \section{Development Boards}
 In order to develop and test the driver code as well as to interface the BlueNRG chip to the host via SPI, there was need for a system-on-board computer. The host of course needed to run on a Linux kernel, so the following two were the obvious choices
 \subsection{Raspberry Pi 2}
-Several generations of Raspberry Pis have been released. The first generation (Raspberry Pi 1 Model B) was released in February 2012. It was followed by a simpler and inexpensive model Model A. In 2014 the foundation released a board with an improved design in Raspberry Pi 1 Model B+. The model laid the current "mainline" form-factor. Improved A+ and B+ models were released a year later. A cut down "compute" model was released in April 2014, and a Raspberry Pi Zero with smaller size and limited input/output (I/O) and general-purpose input/output (GPIO) abilities was released in November 2015 for US\$5. The Raspberry Pi 2 which added more RAM was released in February 2015. Raspberry Pi 3 Model B released in February 2016 is bundled with on-board WiFi and Bluetooth. As of 2016, Raspberry Pi 3 Model B is the newest mainline Raspberry Pi. These boards are priced between US \$20–35.\\
+Several generations of Raspberry Pis have been released. The first generation (Raspberry Pi 1 Model B) was released in February 2012. It was followed by a simpler and inexpensive model Model A. In 2014 the foundation released a board with an improved design in Raspberry Pi 1 Model B+. The model laid the current ``mainline'' form-factor. Improved A+ and B+ models were released a year later. A cut down ``compute'' model was released in April 2014, and a Raspberry Pi Zero with smaller size and limited input/output (I/O) and general-purpose input/output (GPIO) abilities was released in November 2015 for US\$5. The Raspberry Pi 2 which added more RAM was released in February 2015. Raspberry Pi 3 Model B released in February 2016 is bundled with on-board WiFi and Bluetooth. As of 2016, Raspberry Pi 3 Model B is the newest mainline Raspberry Pi. These boards are priced between US \$20–35.\\
 All models feature a Broadcom system on a chip (SoC), which includes an ARM compatible central processing unit (CPU) and an on chip graphics processing unit (GPU, a VideoCore IV). CPU speed ranges from 700 MHz to 1.2 GHz for the Pi 3 and on board memory range from 256 MB to 1 GB RAM. Secure Digital (SD) cards are used to store the operating system and program memory in either the SDHC or MicroSDHC sizes. Most boards have between one and four USB slots, HDMI and composite video output, and a 3.5 mm phone jack for audio. Lower level output is provided by a number of GPIO pins which support common protocols like I²C. The B-models have an 8P8C Ethernet port and the Pi 3 has on board Wi-Fi 802.11n and Bluetooth.\\
 The Foundation provides Raspbian, a Debian-based Linux distribution for download, as well as third party Ubuntu, Windows 10 IOT Core, RISC OS, and specialised media center distributions. It promotes Python and Scratch as the main programming language, with support for many other languages. The default firmware is closed source, while an unofficial open source is available.
 The Raspberry Pi 3 model was used for preliminary development of this driver.
@@ -123,8 +123,282 @@ A logic analyzer is an electronic instrument that captures and displays multiple
 	\caption{Logic Analyzer}
 \end{figure}
 \subsection{Programming interface}
+\subsubsection{Makefile for SPIRIT1}
+To compile the code of the SPIRIT1 as a module we need the Makefile which we already discussed in the previous section. Now we will see the format of the Makefile:\\
+MODULES := spi.o\\
+ARCH := arm\\
+CROSS\_COMPILE :=/home/zinga/Ravi/oldrasberry/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-\\
+obj-m := \$(MODULES)
+OUTDIR := /home/zinga/Ravi/oldrasberry/linux \\
+MAKEARCH := \$(MAKE) ARCH=\$(ARCH) CROSS\_COMPILE=\$(CROSS\_COMPILE) \\
+all: modules\\
+modules:\\
+\$(MAKEARCH) -C \$(OUTDIR) M=\$\lbrace shell pwd\rbrace modules\\
+clean:\\
+\$(MAKEARCH) -C \$(OUTDIR) M=\$\lbrace shell pwd\rbrace clean
+
+
+
+\subsubsection{Linux Kernel SPI support for SPIRIT1}
+The ``Serial Peripheral Interface'' (SPI) is a synchronous four wire serial link used to connect microcontrollers to sensors, memory, and peripherals.
+It's a simple ``de facto'' standard, not complicated enough to acquire a standardization body.  SPI uses a master/slave configuration. The three signal wires hold a clock (SCK, often on the order of 10 MHz), and parallel data lines with ``Master Out, Slave In'' (MOSI) or ``Master In, Slave Out'' (MISO) signals.  (Other names are also used.)  There are four clocking modes through which data is exchanged; mode-0 and mode-3 are most commonly used.  Each clock cycle shifts data out and data in; the clock doesn't cycle except when there is a data bit to shift.  Not all data bits are used though; not every protocol uses those full duplex capabilities.\\
+
+SPI masters use a fourth ``chip select'' line to activate a given SPI slave device, so those three signal wires may be connected to several chips
+in parallel.  All SPI slaves support chipselects; they are usually active low signals, labeled nCSx for slave 'x' (e.g. nCS0).  Some devices have
+other signals, often including an interrupt to the master.\\
+SPI is only one of the names used by such four-wire protocols, and most controllers have no problem handling ``MicroWire'' (think of it as half-duplex SPI, for request/response protocols), SSP (``Synchronous Serial Protocol''), PSP (``Programmable Serial Protocol''), and other related protocols.
+\paragraph{Four modes in SPI}
+The four modes combine two mode bits:\\
+\begin{itemize}
+ 	\item CPOL indicates the initial clock polarity.  CPOL=0 means the clock starts low, so the first (leading) edge is rising, and the second (trailing) edge is falling.  CPOL=1 means the clock starts high, so the first (leading) edge is falling.
+	  \item CPHA indicates the clock phase used to sample data; CPHA=0 says
+	      sample on the leading edge, CPHA=1 means the trailing edge.
+	   \item Since the signal needs to stablize before it's sampled, CPHA=0
+		    implies that its data is written half a clock before the first
+		       clock edge.  The chipselect may have made it become available.\\
+		       Chip specs won't always say ``uses SPI mode X'' in as many words,
+		       but their timing diagrams will make the CPOL and CPHA modes clear.
+		       In the SPI mode number, CPOL is the high order bit and CPHA is the
+		       low order bit.  So when a chip's timing diagram shows the clock
+		       starting low (CPOL=0) and data stabilized for sampling during the
+		       trailing clock edge (CPHA=1), that's SPI mode 1.
+
+		       Note that the clock mode is relevant as soon as the chipselect goes
+		       active.  So the master must set the clock to inactive before selecting
+		       a slave, and the slave can tell the chosen polarity by sampling the
+		       clock level when its select line goes active.  That's why many devices
+		       support for example both modes 0 and 3:  they don't care about polarity,
+		       and always clock data in/out on rising clock edges.
+\end{itemize}
+\paragraph{Write the SPI master controller driver}
+An SPI controller will probably be registered on the platform\_bus; write a driver to bind to the device, whichever bus is involved. The main task of this type of driver is to provide an ``spi\_master''.
+Use spi\_alloc\_master() to allocate the master, and spi\_master\_get\_devdata() to get the driver-private data allocated for that device.
+	struct spi\_master	*master;\\
+	struct CONTROLLER	*c;\\
+	master = spi\_alloc\_master(dev, sizeof *c);\\
+			if (!master)\\
+			return -ENODEV;\\
+			c = spi\_master\_get\_devdata(master);\\
+The driver will initialize the fields of that spi\_master, including the bus number (maybe the same as the platform device ID) and three methods used to interact with the SPI core and SPI protocol drivers.  It will also initialize its own internal state.\\
+If we need to remove your SPI controller driver, spi\_unregister\_master() will reverse the effect of spi\_register\_master().
+\paragraph{SPI master methods}\\
+master-$>$setup(struct spi\_device *spi)\\
+This sets up the device clock rate, SPI mode, and word sizes. Drivers may change the defaults provided by board\_info, and then call spi\_setup(spi) to invoke this routine.  It may sleep.\\
+Unless each SPI slave has its own configuration registers, don't change them right away ... otherwise drivers could corrupt I/O that's in progress for other SPI devices.
+\begin{itemize}
+	\item BUG ALERT:  for some reason the first version of
+	\item many spi\_master drivers seems to get this wrong.
+	\item When you code setup(), ASSUME that the controller is actively processing transfers for another device.
+\end{itemize}
+master-$>$cleanup(struct spi\_device *spi) \\
+	Controller driver may use spi\_device.controller\_state to hold
+		state it dynamically associates with that device.  If we do that,
+			be sure to provide the cleanup() method to free that state.\\
+\paragraph{Write the SPI protocol driver}\\
+Most SPI drivers are currently kernel drivers, but there's also support for userspace drivers. Here we talk only about kernel drivers.\\
+SPI protocol drivers somewhat resemble platform device drivers:\\
+\begin{code}
+	static struct spi\_driver CHIP\_driver = \lbrace \\
+			.driver = \lbrace \\
+			.name		= ``CHIP'',\\
+			.owner		= THIS\_MODULE,\\
+			.pm		= &CHIP\_pm\_ops,\\
+		\rbrace , \\ 
+			.probe		= CHIP\_probe,\\
+			.remove		= CHIP\_remove,\\
+		\rbrace. \\ 
+\end{code}
+Now compile the driver using the below command \\ make \\ and with the lsmod we are able to show the module of SPIRIT1. \\
+After this we are able to see our device i.e. SPIRIT1 in the spi category. \\
+cd /class/spi/ \\
+\subsection{Transfer the data over SPI}
+By making the entry of our device in the SPI now we have to transfer the data over the SPI. For that we have to make the read and write function for the SPI.
+\begin{itemize}
+	\item To read the data from SPI. \\
+	int (*read) (struct stsp\_dev *dev, u8 addr, int len, u8 *data);\\
+	To read the data we have to give the address of the buffer, length of the data that has to be read and the data.
+	\item To write the data from SPI. \\
+	int (*write) (struct stsp\_dev *dev, u8 addr, int len, char *data);\\
+	To write the data over the SPI we have to follow the above function.\\
+In the stsp\_dev function we have to give the device information.\\
+\end{itemize}
+Now to transfer the data over the the syntax is: \\
+\begin{code}
+static const struct stsp\_transfer\_function stsp\_spi\_tf = \lbrace \\
+	.write = stsp\_spi\_write, \\
+	.read = stsp\_spi\_read, \\
+	\rbrace \\
+\end{code}
+	After this we are able to send the data over SPI. \\
 \subsubsection{SYSFS programming Interface}
-sysfs is a pseudo file system provided by the Linux kernel that exports information about various kernel subsystems, hardware devices, and associated device drivers from the kernel's device model to user space through virtual files. In addition to providing information about various devices and kernel subsystems, exported virtual files are also used for their configuring. sysfs provides functionality similar to the sysctl mechanism found in BSD operating systems, with the difference that sysfs is implemented as a virtual file system instead of being a purpose-built kernel mechanism. Sysfs is used by several utilities to access information about hardware and its driver (kernel modules) such as udev or HAL. Scripts have been written to access information previously obta For every kobject that is registered with the system, a directory is created for it in sysfs. That directory is created as a subdirectory of the kobject's parent, expressing internal object hierarchies to userspace. %Top-level directories in sysfs represent the common ancestors of object hierarchies; i.e. the subsystems the objects belong to. Sysfs internally stores a pointer to the kobject that implements a directory in the kernfs_node object associated with the directory. In the past this kobject pointer has been used by sysfs to do reference counting directly on the kobject whenever the file is opened or closed. With the current sysfs implementation the kobject reference count is only modified directly by the function sysfs_schedule_callback().%
+sysfs is a ram-based filesystem initially based on ramfs. It provides
+a means to export kernel data structures, their attributes, and the 
+linkages between them to userspace.\\
+sysfs is always compiled in if CONFIG\_SYSFS is defined. We can access
+it by doing:\\
+
+    mount -t sysfs sysfs /sys\\
+    For every kobject that is registered with the system, a directory is
+    created for it in sysfs. That directory is created as a subdirectory
+    of the kobject's parent, expressing internal object hierarchies to
+    userspace. Top-level directories in sysfs represent the common
+    ancestors of object hierarchies; i.e. the subsystems the objects
+    belong to.\\
+    Sysfs internally stores a pointer to the kobject that implements a
+    directory in the kernfs\_node object associated with the directory. In
+    the past this kobject pointer has been used by sysfs to do reference
+    counting directly on the kobject whenever the file is opened or closed.
+    With the current sysfs implementation the kobject reference count is
+    only modified directly by the function sysfs\_schedule\_callback().
+    \paragraph{Attributes}\\
+    Attributes can be exported for kobjects in the form of regular files in
+    the filesystem. Sysfs forwards file I/O operations to methods defined
+    for the attributes, providing a means to read and write kernel
+    attributes.\\Attributes should be ASCII text files, preferably with only one value
+    per file. It is noted that it may not be efficient to contain only one
+    value per file, so it is socially acceptable to express an array of
+    values of the same type. An attribute definition is simply:\\
+    \begin{code}
+    struct attribute \lbrace \\ 
+            char * name;\\
+	    struct module *owner;\\
+            umode\_t   mode;\\
+			    \rbrace ;\\
+    \end{code}
+    int sysfs\_create\_file(struct kobject * kobj, const struct attribute * attr);\\
+    void sysfs\_remove\_file(struct kobject * kobj, const struct attribute * attr);\\
+    A bare attribute contains no means to read or write the value of the
+    attribute.Subsystems are encouraged to define their own attribute
+    structure and wrapper functions for adding and removing attributes for
+    a specific object type.\\
+	\begin{code}
+	struct device\_attribute \lbrace \\
+	struct attribute	attr;\\
+		ssize\_t (*show)(struct device *dev, struct device\_attribute *attr, char *buf);\\
+		ssize\_t (*store)(struct device *dev, struct device\_attribute *attr, const char *buf, size\_t count);\\
+	\rbrace ; \\						
+
+	\end{code}
+	Now we have to define the device attributes. \\
+	$#$define DEVICE\_ATTR(\_name, \_mode, \_show, \_store) \\
+	struct device\_attribute dev\_attr\_mode\_name = \_ATTR(\_name, \_mode, \_show, \_store)\\
+\subsection{Reading/writing Attribute data}
+To read or write attributes, show() or store() methods must be
+specified when declaring the attribute. The method types should be as
+simple as those defined for device attributes:\\
+ssize\_t (*show)(struct device *dev, struct device\_attribute *attr, char *buf);\\
+ssize\_t (*store)(struct device *dev, struct device\_attribute *attr,
+                 const char *buf, size\_t count);\\
+		 IOW, they should take only an object, an attribute, and a buffer as parameters.\\
+		 sysfs allocates a buffer of size (PAGE\_SIZE) and passes it to the
+		 method. Sysfs will call the method exactly once for each read or
+		 write.\\
+		 The format of the implementation of the syfs for the SPIRIT1 is:\\
+		 \begin{code}
+		 static ssize\_t show\_name(struct device *dev, struct device\_attribute *attr,
+		                          char *buf)\\
+		\lbrace \\
+		return scnprintf(buf, PAGE\_SIZE, ``\%s'', dev$->$name);\\
+		\rbrace \\
+		static ssize\_t store\_name(struct device *dev, struct device\_attribute *attr,
+		                          const char *buf, size\_t count)\\
+		\lbrace \\
+		snprintf(dev->name, sizeof(dev->name), ``\%.*s'',(int)min(count, sizeof(dev->name) - 1), buf);\\
+		return count;\\
+		\rbrace\\
+		static DEVICE\_ATTR(name, S\_IRUGO, show\_name, store\_name);\\
+		\end{code}
+		The top level sysfs directory looks like:\\
+		\begin{itemize}
+		\item block
+		\item bus
+		\item class
+		\item dev
+		\item devices
+		\item firmware
+		\item net
+		\item fs
+		\item devices
+		contains a filesystem representation of the device tree. It maps
+		directly to the internal kernel device tree, which is a hierarchy of
+		struct device.
+		\item bus
+		contains flat directory layout of the various bus types in the
+		kernel. Each bus's directory contains two subdirectories:\\
+		devices\\
+		drivers
+		\item devices 
+		contains a directory for each device driver that is loaded
+		for devices on that particular bus (this assumes that drivers do not
+		span multiple bus types).
+		\end{itemize}
+		By making the entry of our device in the sysfs we are able to see it in the sysfs directory under spi directory as shown in below figure:\\
+		cd /sys/devices/platform/spi \\
+		Using the above command we are able to see the sysfs file for SPIRIT1.
+
+			\begin{figure}[ht]
+				\centering
+				\includegraphics[scale=1]{images/sysfs.png}
+				\caption{entry of SPIRIT1 in sysfs}
+			\end{figure}
+			To read the contents of the sysfs we have to change the mode using below command: \\
+			sudo chmod 666 -R fileOne
+\subsection{Initialize the hardware}
+After making the entry for the SPIRIT1 in sysfs we have to initialize the hardware i.e. SPIRIT1 on linux platform for that we have to make an entry of the hardware in the probe function. probe() will be called to make sure that the device exist and the functionality is fine.If device is not hot-pluggable, functionality of probe() can be put inside init() method.This will reduce driver's run time memory footprint. Probe() happens at the time of device boot or when device is connected.For a ``platform'' device the probe function is invoked when a platform device is registered and it's device name matches the name specified on the device driver. \\
+To make an entry in the probe function the syntax is: \\
+              err = stsp\_hw\_init(dev);\\
+	      Now we have to initialize the hardware. \\
+	\begin{code}
+	static int stsp\_hw\_init(struct stsp\_dev *dev)\\
+	\lbrace \\
+	int err;\\
+        u8 data;\\
+       err = dev->tf->read(dev, DEVICE\_INFO0\_VERSION, 1, &data);\\
+        printk(``probing the function = ravi'');\\
+	static int stsp\_hw\_init(struct stsp\_dev *dev)\\
+	\lbrace \\
+        int err;\\
+        u8 data;\\
+        err = dev->tf->read(dev, DEVICE\_INFO0\_VERSION, 1, &data);\\
+        printk(``probing the function = ravi'');\\
+        if (err < 0)\\
+        \lbrace \\
+         dev\_err(dev->dev, ``error reading the version\n'');\\
+         return err;\\
+        \rbrace \\
+        printk(``probbing = \%d'', err);\\
+        if (data != DEVICE\_INFO0\_VERSION)\\
+ \lbrace \\
+ dev\_err(dev->dev, ``device unknown \0x\%02x-0x'', DEVICE\_INFO0\_VERSION, data);\\
+  return -ENODEV;\\
+        \rbrace \\
+        return err;\\
+	\rbrace \\
+	\end{code}
+After initializing the hardware and insert the modules using \\ sudo insmod spi.ko \\ and then checking the result running the below command \\ dmesg \\ we will see the entry of hardware as shown in figure below. I am getting this output because hardware is not connected to my RPI board we will see the result with the hardware connecting in the testing section. Here we have to check only whether the hardware entry is made or not in Linux. \\
+			\begin{figure}[ht]
+				\centering
+				\includegraphics[scale=1]{images/hardware_result.png}
+				\caption{Hardware initialization in Linux}
+			\end{figure}
+\subsection{Port the essential stuff}
+After initializing the hardware now our main focus is to write the essential stuff for the SPIRIT1. Essential stuff means Register, Interrupts enablein SPIRIT1, commands required to ready the hardware and payload. For that we have to take the help from SPIRIT1 datasheet. 
+\paragraph{Interrupts in SPIRIT1} \\
+A handler is expected to perform any necessary acknowledgement of the parent IRQ via the correct chip specific function. In the Linux there is already the entry of Interrupts under this directory \\ \#include$<$irq.h$>$\\. 
+\begin{itemize}
+\item set\_irq\_chip(irq,\ chip) \\
+Set the mask/unmask methods for handling this IRQ.
+\item set\_irq\_handler(irq,\ handler)\\
+Set the handler for this IRQ (level, edge, simple).
+\item set\_irq\_chained\_handler(irq, handler)\\
+Set a ``chained'' handler for this IRQ - automatically enables this IRQ.
+\item set\_irq\_flags(irq, flags)\\
+Set the valid/probe/noautoenable flags.
+\item set\_irq\_type(irq, type)
+Set active the IRQ edge(s)/level. This is also for the GPIO of the SPIRIT1. As we seen in the datasheet of the SPIRIT1 that there are four GPIO's in it. This interrupt is for the GPIO's.
+set\_GPIO\_IRQ\_edge() is obsolete, and should be replaced by set\_irq\_type.
+\end{itemize}
+
 \section{Testing}
 The driver job is to send the commands from the one device to another one and getting back its response. If all this happen sucessfully then that should means that the one SPIRIT1 is able to communicate with another SPIRIT1.\\
 For testing the SPIRIT1 we have to do the following procedure:

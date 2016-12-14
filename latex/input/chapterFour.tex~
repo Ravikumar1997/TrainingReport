@@ -19,7 +19,7 @@ Having hardware reliably supported by Linux means getting the driver accepted in
 The Linux driver model is different from the Windows model many IHVs are used to. But it is a consistent and compelling approach, and has been successful at supporting nearly the entire universe of computer hardware. Moreover, the vast majority of all IHVs have adapted to Linux and have thriving businesses that work with the Linux driver development model.
 \subsection{Overview of SPI support in Linux}
 \subsubsection{What is SPI?}
-The "Serial Peripheral Interface" (SPI) is a synchronous four wire serial link used to connect microcontrollers to sensors, memory, and peripherals. It's a simple "de facto" standard, not complicated enough to acquire a standardization body.  SPI uses a master/slave configuration.\\
+The ``Serial Peripheral Interface'' (SPI) is a synchronous four wire serial link used to connect microcontrollers to sensors, memory, and peripherals. It's a simple "de facto" standard, not complicated enough to acquire a standardization body.  SPI uses a master/slave configuration.\\
 The three signal wires hold a clock (SCK, often on the order of 10 MHz), and parallel data lines with "Master Out, Slave In" (MOSI) or "Master In, Slave Out" (MISO) signals.  (Other names are also used.)  There are four clocking modes through which data is exchanged; mode-0 and mode-3 are most commonly used.  Each clock cycle shifts data out and data in; the clock doesn't cycle except when there is a data bit to shift.  Not all data bits are used though; not every protocol uses those full duplex capabilities.\\
 SPI masters use a fourth "chip select" line to activate a given SPI slave device, so those three signal wires may be connected to several chips in parallel.  All SPI slaves support chipselects; they are usually active low signals, labeled nCSx for slave 'x' (e.g. nCS0).  Some devices have other signals, often including an interrupt to the master. \\
 Unlike serial busses like USB or SMBus, even low level protocols for SPI slave functions are usually not interoperable between vendors (except for commodities like SPI memory chips).
@@ -70,7 +70,7 @@ The Foundation provides Raspbian, a Debian-based Linux distribution for download
 The Raspberry Pi 3 model was used for preliminary development of this driver.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=3.5in, height=3in]{images/raspberry_pi.png}
+	\includegraphics[width=4.0in, height=3.2in]{images/raspberry_pi.png}
 	\caption{Raspberry Pi 2}
 \end{figure}
 \subsection{BeagleBone Black}
@@ -101,7 +101,7 @@ In software development it is often very useful to be able to find the callers o
 cscope was created to search content within C files, but it can also be used (with some limits) for C++ and Java files.
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.5]{images/cscope.png}
+	\includegraphics[scale=0.8]{images/cscope.png}
 	\caption{Source Browsing through Cscope}
 \end{figure}
 \subsection{VIM}
@@ -119,22 +119,296 @@ Some basic commands are :
 A logic analyzer is an electronic instrument that captures and displays multiple signals from a digital system or digital circuit. A logic analyzer may convert the captured data into timing diagrams, protocol decodes, state machine traces, assembly language, or may correlate assembly with source-level software. Logic Analyzers have advanced triggering capabilities, and are useful when a user needs to see the timing relationships between many signals in a digital system.\\
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.3]{images/logic_analyzer.png}
+	\includegraphics[scale=0.45]{images/logic_analyzer.png}
 	\caption{Logic Analyzer}
 \end{figure}
 \subsection{Programming interface}
+\subsubsection{Makefile for SPIRIT1}
+To compile the code of the SPIRIT1 as a module we need the Makefile which we already discussed in the previous section. Now we will see the format of the Makefile:\\
+MODULES := spi.o\\
+ARCH := arm\\
+CROSS\_COMPILE :=/home/zinga/Ravi/oldrasberry/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-\\
+obj-m := \$(MODULES)
+OUTDIR := /home/zinga/Ravi/oldrasberry/linux \\
+MAKEARCH := \$(MAKE) ARCH=\$(ARCH) CROSS\_COMPILE=\$(CROSS\_COMPILE) \\
+all: modules\\
+modules:\\
+\$(MAKEARCH) -C \$(OUTDIR) M=\$\lbrace shell pwd\rbrace modules\\
+clean:\\
+\$(MAKEARCH) -C \$(OUTDIR) M=\$\lbrace shell pwd\rbrace clean
+
+
+
+\subsubsection{Linux Kernel SPI support for SPIRIT1}
+The "Serial Peripheral Interface" (SPI) is a synchronous four wire serial link used to connect microcontrollers to sensors, memory, and peripherals.
+It's a simple "de facto" standard, not complicated enough to acquire a standardization body.  SPI uses a master/slave configuration. The three signal wires hold a clock (SCK, often on the order of 10 MHz), and parallel data lines with "Master Out, Slave In" (MOSI) or "Master In, Slave Out" (MISO) signals.  (Other names are also used.)  There are four clocking modes through which data is exchanged; mode-0 and mode-3 are most commonly used.  Each clock cycle shifts data out and data in; the clock doesn't cycle except when there is a data bit to shift.  Not all data bits are used though; not every protocol uses those full duplex capabilities.\\
+
+SPI masters use a fourth "chip select" line to activate a given SPI slave device, so those three signal wires may be connected to several chips
+in parallel.  All SPI slaves support chipselects; they are usually active low signals, labeled nCSx for slave 'x' (e.g. nCS0).  Some devices have
+other signals, often including an interrupt to the master.\\
+SPI is only one of the names used by such four-wire protocols, and most controllers have no problem handling "MicroWire" (think of it as half-duplex SPI, for request/response protocols), SSP ("Synchronous Serial Protocol"), PSP ("Programmable Serial Protocol"), and other related protocols.
+\paragraph{Four modes in SPI}
+The four modes combine two mode bits:\\
+\begin{itemize}
+ 	\item CPOL indicates the initial clock polarity.  CPOL=0 means the clock starts low, so the first (leading) edge is rising, and the second (trailing) edge is falling.  CPOL=1 means the clock starts high, so the first (leading) edge is falling.
+	  \item CPHA indicates the clock phase used to sample data; CPHA=0 says
+	      sample on the leading edge, CPHA=1 means the trailing edge.
+	   \item Since the signal needs to stablize before it's sampled, CPHA=0
+		    implies that its data is written half a clock before the first
+		       clock edge.  The chipselect may have made it become available.\\
+		       Chip specs won't always say "uses SPI mode X" in as many words,
+		       but their timing diagrams will make the CPOL and CPHA modes clear.
+		       In the SPI mode number, CPOL is the high order bit and CPHA is the
+		       low order bit.  So when a chip's timing diagram shows the clock
+		       starting low (CPOL=0) and data stabilized for sampling during the
+		       trailing clock edge (CPHA=1), that's SPI mode 1.
+
+		       Note that the clock mode is relevant as soon as the chipselect goes
+		       active.  So the master must set the clock to inactive before selecting
+		       a slave, and the slave can tell the chosen polarity by sampling the
+		       clock level when its select line goes active.  That's why many devices
+		       support for example both modes 0 and 3:  they don't care about polarity,
+		       and always clock data in/out on rising clock edges.
+\end{itemize}
+\paragraph{Write the SPI master controller driver}
+An SPI controller will probably be registered on the platform\_bus; write a driver to bind to the device, whichever bus is involved. The main task of this type of driver is to provide an "spi\_master".
+Use spi\_alloc\_master() to allocate the master, and spi\_master\_get\_devdata() to get the driver-private data allocated for that device.
+	struct spi\_master	*master;\\
+	struct CONTROLLER	*c;\\
+	master = spi\_alloc\_master(dev, sizeof *c);\\
+			if (!master)\\
+			return -ENODEV;\\
+			c = spi\_master\_get\_devdata(master);\\
+The driver will initialize the fields of that spi\_master, including the bus number (maybe the same as the platform device ID) and three methods used to interact with the SPI core and SPI protocol drivers.  It will also initialize its own internal state.\\
+If we need to remove your SPI controller driver, spi\_unregister\_master() will reverse the effect of spi\_register\_master().
+\paragraph{SPI master methods}\\
+master-$>$setup(struct spi\_device *spi)\\
+This sets up the device clock rate, SPI mode, and word sizes. Drivers may change the defaults provided by board\_info, and then call spi\_setup(spi) to invoke this routine.  It may sleep.\\
+Unless each SPI slave has its own configuration registers, don't change them right away ... otherwise drivers could corrupt I/O that's in progress for other SPI devices.
+\begin{itemize}
+	\item BUG ALERT:  for some reason the first version of
+	\item many spi\_master drivers seems to get this wrong.
+	\item When you code setup(), ASSUME that the controller is actively processing transfers for another device.
+\end{itemize}
+master-$>$cleanup(struct spi\_device *spi) \\
+	Controller driver may use spi\_device.controller\_state to hold
+		state it dynamically associates with that device.  If we do that,
+			be sure to provide the cleanup() method to free that state.\\
+\paragraph{Write the SPI protocol driver}\\
+Most SPI drivers are currently kernel drivers, but there's also support for userspace drivers. Here we talk only about kernel drivers.\\
+SPI protocol drivers somewhat resemble platform device drivers:\\
+\begin{code}
+	static struct spi\_driver CHIP\_driver = \lbrace \\
+			.driver = \lbrace \\
+			.name		= "CHIP",\\
+			.owner		= THIS\_MODULE,\\
+			.pm		= &CHIP\_pm\_ops,\\
+		\rbrace , \\ 
+			.probe		= CHIP\_probe,\\
+			.remove		= CHIP\_remove,\\
+		\rbrace. \\ 
+\end{code}
+Now compile the driver using the below command \\ make \\ and with the lsmod we are able to show the module of SPIRIT1. \\
+After this we are able to see our device i.e. SPIRIT1 in the spi category. \\
+cd /class/spi/ \\
+\subsection{Transfer the data over SPI}
+By making the entry of our device in the SPI now we have to transfer the data over the SPI. For that we have to make the read and write function for the SPI.
+\begin{itemize}
+	\item To read the data from SPI. \\
+	int (*read) (struct stsp\_dev *dev, u8 addr, int len, u8 *data);\\
+	To read the data we have to give the address of the buffer, length of the data that has to be read and the data.
+	\item To write the data from SPI. \\
+	int (*write) (struct stsp\_dev *dev, u8 addr, int len, char *data);\\
+	To write the data over the SPI we have to follow the above function.\\
+In the stsp\_dev function we have to give the device information.\\
+\end{itemize}
+Now to transfer the data over the the syntax is: \\
+\begin{code}
+static const struct stsp\_transfer\_function stsp\_spi\_tf = \lbrace \\
+	.write = stsp\_spi\_write, \\
+	.read = stsp\_spi\_read, \\
+	\rbrace \\
+\end{code}
+	After this we are able to send the data over SPI. \\
 \subsubsection{SYSFS programming Interface}
-sysfs is a pseudo file system provided by the Linux kernel that exports information about various kernel subsystems, hardware devices, and associated device drivers from the kernel's device model to user space through virtual files. In addition to providing information about various devices and kernel subsystems, exported virtual files are also used for their configuring. sysfs provides functionality similar to the sysctl mechanism found in BSD operating systems, with the difference that sysfs is implemented as a virtual file system instead of being a purpose-built kernel mechanism. Sysfs is used by several utilities to access information about hardware and its driver (kernel modules) such as udev or HAL. Scripts have been written to access information previously obta For every kobject that is registered with the system, a directory is created for it in sysfs. That directory is created as a subdirectory of the kobject's parent, expressing internal object hierarchies to userspace. %Top-level directories in sysfs represent the common ancestors of object hierarchies; i.e. the subsystems the objects belong to. Sysfs internally stores a pointer to the kobject that implements a directory in the kernfs_node object associated with the directory. In the past this kobject pointer has been used by sysfs to do reference counting directly on the kobject whenever the file is opened or closed. With the current sysfs implementation the kobject reference count is only modified directly by the function sysfs_schedule_callback().%
+sysfs is a ram-based filesystem initially based on ramfs. It provides
+a means to export kernel data structures, their attributes, and the 
+linkages between them to userspace.\\
+sysfs is always compiled in if CONFIG\_SYSFS is defined. We can access
+it by doing:\\
+
+    mount -t sysfs sysfs /sys\\
+    For every kobject that is registered with the system, a directory is
+    created for it in sysfs. That directory is created as a subdirectory
+    of the kobject's parent, expressing internal object hierarchies to
+    userspace. Top-level directories in sysfs represent the common
+    ancestors of object hierarchies; i.e. the subsystems the objects
+    belong to.\\
+    Sysfs internally stores a pointer to the kobject that implements a
+    directory in the kernfs\_node object associated with the directory. In
+    the past this kobject pointer has been used by sysfs to do reference
+    counting directly on the kobject whenever the file is opened or closed.
+    With the current sysfs implementation the kobject reference count is
+    only modified directly by the function sysfs\_schedule\_callback().
+    \paragraph{Attributes}\\
+    Attributes can be exported for kobjects in the form of regular files in
+    the filesystem. Sysfs forwards file I/O operations to methods defined
+    for the attributes, providing a means to read and write kernel
+    attributes.\\Attributes should be ASCII text files, preferably with only one value
+    per file. It is noted that it may not be efficient to contain only one
+    value per file, so it is socially acceptable to express an array of
+    values of the same type. An attribute definition is simply:\\
+    \begin{code}
+    struct attribute \lbrace \\ 
+            char * name;\\
+	    struct module *owner;\\
+            umode\_t   mode;\\
+			    \rbrace ;\\
+    \end{code}
+    int sysfs\_create\_file(struct kobject * kobj, const struct attribute * attr);\\
+    void sysfs\_remove\_file(struct kobject * kobj, const struct attribute * attr);\\
+    A bare attribute contains no means to read or write the value of the
+    attribute.Subsystems are encouraged to define their own attribute
+    structure and wrapper functions for adding and removing attributes for
+    a specific object type.\\
+	\begin{code}
+	struct device\_attribute \lbrace \\
+	struct attribute	attr;\\
+		ssize\_t (*show)(struct device *dev, struct device\_attribute *attr, char *buf);\\
+		ssize\_t (*store)(struct device *dev, struct device\_attribute *attr, const char *buf, size\_t count);\\
+	\rbrace ; \\						
+
+	\end{code}
+	Now we have to define the device attributes. \\
+	$#$define DEVICE\_ATTR(\_name, \_mode, \_show, \_store) \\
+	struct device\_attribute dev\_attr\_mode\_name = \_ATTR(\_name, \_mode, \_show, \_store)\\
+\subsection{Reading/writing Attribute data}
+To read or write attributes, show() or store() methods must be
+specified when declaring the attribute. The method types should be as
+simple as those defined for device attributes:\\
+ssize\_t (*show)(struct device *dev, struct device\_attribute *attr, char *buf);\\
+ssize\_t (*store)(struct device *dev, struct device\_attribute *attr,
+                 const char *buf, size\_t count);\\
+		 IOW, they should take only an object, an attribute, and a buffer as parameters.\\
+		 sysfs allocates a buffer of size (PAGE\_SIZE) and passes it to the
+		 method. Sysfs will call the method exactly once for each read or
+		 write.\\
+		 The format of the implementation of the syfs for the SPIRIT1 is:\\
+		 \begin{code}
+		 static ssize\_t show\_name(struct device *dev, struct device\_attribute *attr,
+		                          char *buf)\\
+		\lbrace \\
+		return scnprintf(buf, PAGE\_SIZE, "\%s", dev$->$name);\\
+		\rbrace \\
+		static ssize\_t store\_name(struct device *dev, struct device\_attribute *attr,
+		                          const char *buf, size\_t count)\\
+		\lbrace \\
+		snprintf(dev->name, sizeof(dev->name), "\%.*s",(int)min(count, sizeof(dev->name) - 1), buf);\\
+		return count;\\
+		\rbrace\\
+		static DEVICE\_ATTR(name, S\_IRUGO, show\_name, store\_name);\\
+		\end{code}
+		The top level sysfs directory looks like:\\
+		\begin{itemize}
+		\item block
+		\item bus
+		\item class
+		\item dev
+		\item devices
+		\item firmware
+		\item net
+		\item fs
+		\item devices
+		contains a filesystem representation of the device tree. It maps
+		directly to the internal kernel device tree, which is a hierarchy of
+		struct device.
+		\item bus
+		contains flat directory layout of the various bus types in the
+		kernel. Each bus's directory contains two subdirectories:\\
+		devices\\
+		drivers
+		\item devices 
+		contains a directory for each device driver that is loaded
+		for devices on that particular bus (this assumes that drivers do not
+		span multiple bus types).
+		\end{itemize}
+		By making the entry of our device in the sysfs we are able to see it in the sysfs directory under spi directory as shown in below figure:\\
+		cd /sys/devices/platform/spi \\
+		Using the above command we are able to see the sysfs file for SPIRIT1.
+
+			\begin{figure}[ht]
+				\centering
+				\includegraphics[scale=1]{images/sysfs.png}
+				\caption{entry of SPIRIT1 in sysfs}
+			\end{figure}
+			To read the contents of the sysfs we have to change the mode using below command: \\
+			sudo chmod 666 -R fileOne
+\subsection{Initialize the hardware}
+After making the entry for the SPIRIT1 in sysfs we have to initialize the hardware i.e. SPIRIT1 on linux platform for that we have to make an entry of the hardware in the probe function. probe() will be called to make sure that the device exist and the functionality is fine.If device is not hot-pluggable, functionality of probe() can be put inside init() method.This will reduce driver's run time memory footprint. Probe() happens at the time of device boot or when device is connected.For a "platform" device the probe function is invoked when a platform device is registered and it's device name matches the name specified on the device driver. \\
+To make an entry in the probe function the syntax is: \\
+              err = stsp\_hw\_init(dev);\\
+	      Now we have to initialize the hardware. \\
+	\begin{code}
+	static int stsp\_hw\_init(struct stsp\_dev *dev)\\
+	\lbrace \\
+	int err;\\
+        u8 data;\\
+       err = dev->tf->read(dev, DEVICE\_INFO0\_VERSION, 1, &data);\\
+        printk("probing the function = ravi");\\
+	static int stsp\_hw\_init(struct stsp\_dev *dev)\\
+	\lbrace \\
+        int err;\\
+        u8 data;\\
+        err = dev->tf->read(dev, DEVICE\_INFO0\_VERSION, 1, &data);\\
+        printk("probing the function = ravi");\\
+        if (err < 0)\\
+        \lbrace \\
+         dev\_err(dev->dev, "error reading the version\n");\\
+         return err;\\
+        \rbrace \\
+        printk("probbing = \%d", err);\\
+        if (data != DEVICE\_INFO0\_VERSION)\\
+ \lbrace \\
+ dev\_err(dev->dev, "device unknown 0x\%02x-0x", DEVICE\_INFO0\_VERSION, data);\\
+  return -ENODEV;\\
+        \rbrace \\
+        return err;\\
+	\rbrace \\
+	\end{code}
+After initializing the hardware and insert the modules using \\ sudo insmod spi.ko \\ and then checking the result running the below command \\ dmesg \\ we will see the entry of hardware as shown in figure below. I am getting this output because hardware is not connected to my RPI board we will see the result with the hardware connecting in the testing section. Here we have to check only whether the hardware entry is made or not in Linux. \\
+			\begin{figure}[ht]
+				\centering
+				\includegraphics[scale=1]{images/hardware_result.png}
+				\caption{Hardware initialization in Linux}
+			\end{figure}
+\subsection{Port the essential stuff}
+After initializing the hardware now our main focus is to write the essential stuff for the SPIRIT1. Essential stuff means Register, Interrupts enablein SPIRIT1, commands required to ready the hardware and payload. For that we have to take the help from SPIRIT1 datasheet. 
+\paragraph{Interrupts in SPIRIT1} \\
+A handler is expected to perform any necessary acknowledgement of the parent IRQ via the correct chip specific function. In the Linux there is already the entry of Interrupts under this directory \\ \#include$<$irq.h$>$\\. 
+\begin{itemize}
+\item set\_irq\_chip(irq,\ chip) \\
+Set the mask/unmask methods for handling this IRQ.
+\item set\_irq\_handler(irq,\ handler)\\
+Set the handler for this IRQ (level, edge, simple).
+\item set\_irq\_chained\_handler(irq, handler)\\
+Set a ''chained" handler for this IRQ - automatically enables this IRQ.
+\item set\_irq\_flags(irq, flags)\\
+Set the valid/probe/noautoenable flags.
+\item set\_irq\_type(irq, type)
+Set active the IRQ edge(s)/level. This is also for the GPIO of the SPIRIT1. As we seen in the datasheet of the SPIRIT1 that there are four GPIO's in it. This interrupt is for the GPIO's.
+set\_GPIO\_IRQ\_edge() is obsolete, and should be replaced by set\_irq\_type.
+\end{itemize}
+
 \section{Testing}
-The driver job is to send the commands from the one SPIRIT to another one and getting back its response. if all this happen sucessfully then that should means that the SPIRIT is able to communicate with another SPIRIT.\\
-For testing the SPIRIT we have to do the following procedure:
+The driver job is to send the commands from the one device to another one and getting back its response. If all this happen sucessfully then that should means that the one SPIRIT1 is able to communicate with another SPIRIT1.\\
+For testing the SPIRIT1 we have to do the following procedure:
 \subsection{Enable the SPI in RPI2 board}
 	\begin{enumerate}
 		\item To enable the SPI in raspberry PI board. Run the following command.
 			\textbf{sudo raspi-config}
 			\begin{figure}[ht]
 				\centering
-				\includegraphics[scale=1.2]{images/spi.png}
+				\includegraphics[scale=1.3]{images/spi.png}
 				\caption{enable the SPI in RPI2 board}
 			\end{figure}
 		\item Select the Advanced boot option
@@ -178,7 +452,7 @@ The SPSGRF series enables wireless connectivity in electronic devices, requiring
 		\bottomrule
 		\end{tabular}
 	}
-	\caption{RPI2 and SPIRIT Interfacing}
+	\caption{RPI2 and SPIRIT1 Interfacing}
 \end{table}
 \begin{figure}[H]
 	\centering
@@ -186,17 +460,17 @@ The SPSGRF series enables wireless connectivity in electronic devices, requiring
 	\caption{Interfacing between RPI2 and SPIRIT1}
 \end{figure}
 \subsection{Test using logic Analyzer}
-We discussed in the previous section about the logic analyzer and how it works. Now we test the SPI of SPIRIT using logic analyzer. It gives us an idea that the data through the SPI is going correctly or not. For that we have to connect the logic Analyzer with the SPIRIT board and send the data over sysfs file using command:\\
+We discussed in the previous section about the logic analyzer and how it works. Now we test the SPI of SPIRIT1 using logic analyzer. It gives us an idea that the data through the SPI is going correctly or not. For that we have to connect the logic Analyzer with the SPIRIT1 board and send the data over sysfs file using command:\\
 \textbf{echo FF $>$ filename}\\
 Run the above command and notice the data over logic analyzer. It gives:
-After the data through the SPI is flowing correctly. Now we have to send the commands for the SPIRIT to become ready. For that we send the command 0x03 over SPI after that SPIRIT become ready to accept the data. 
+After the data through the SPI is flowing correctly. Now we have to send the commands for the SPIRIT1 to become ready. For that we send the command 0x03 over SPI after that SPIRIT1 become ready to accept the data. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=4.5in, height=2.5in]{images/raspberryoutput.png}
 	\caption{Raspberry PI output on logic Analyzer}
 \end{figure}
 \subsection{Test the hardware}
-When the SPIRIT become ready to accept the data. Now for the hardware verification we have to read the version info and version number of the SPIRIT to verify that whether our hardware is recognised by the Linux or not.\\
+When the SPIRIT1 become ready to accept the data. Now for the hardware verification we have to read the version info and version number of the SPIRIT1 to verify that whether our hardware is recognised by the Linux or not.\\
 \begin{table}[ht]
 	\centering
 	\scalebox{0.85}
@@ -228,7 +502,7 @@ When the SPIRIT become ready to accept the data. Now for the hardware verificati
 	\bottomrule
 	\end{tabular}
 	}
-	\caption{Value to be read from SPIRIT}
+	\caption{Value to be read from SPIRIT1}
 \end{table}
 
 

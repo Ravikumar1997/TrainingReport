@@ -117,49 +117,63 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4.4}Logic Analyzer}{42}{subsection.4.4.4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Logic Analyzer}}{43}{figure.4.5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4.5}Programming interface}{43}{subsection.4.4.5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.5.1}SYSFS programming Interface}{43}{subsubsection.4.4.5.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Testing}{43}{section.4.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Enable the SPI in RPI2 board}{44}{subsection.4.5.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces enable the SPI in RPI2 board}}{44}{figure.4.6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1.1}Make the entry in dts}{44}{subsubsection.4.5.1.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Entry in dts}}{45}{figure.4.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Interfacing between RPI2 and SPSGRF(SPIRIT1)}{45}{subsection.4.5.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces RPI2 and SPIRIT1 Interfacing}}{45}{table.4.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Interfacing between RPI2 and SPIRIT1}}{46}{figure.4.8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.3}Test using logic Analyzer}{46}{subsection.4.5.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Raspberry PI output on logic Analyzer}}{46}{figure.4.9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.4}Test the hardware}{47}{subsection.4.5.4}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Hardware Register}}{47}{table.4.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Value to be read from SPIRIT1}}{47}{table.4.3}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Testing of the driver of LED7708}{48}{chapter.5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.5.1}Makefile for SPIRIT1}{43}{subsubsection.4.4.5.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.5.2}Linux Kernel SPI support for SPIRIT1}{44}{subsubsection.4.4.5.2}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.5.2.1}Four modes in SPI}{44}{paragraph.4.4.5.2.1}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.5.2.2}Write the SPI master controller driver}{45}{paragraph.4.4.5.2.2}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.5.2.3}SPI master methods}{45}{paragraph.4.4.5.2.3}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.5.2.4}Write the SPI protocol driver}{45}{paragraph.4.4.5.2.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.6}Transfer the data over SPI}{46}{subsection.4.4.6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.6.1}SYSFS programming Interface}{47}{subsubsection.4.4.6.1}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.6.1.1}Attributes}{47}{paragraph.4.4.6.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.7}Reading/writing Attribute data}{48}{subsection.4.4.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces entry of SPIRIT1 in sysfs}}{49}{figure.4.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.8}Initialize the hardware}{49}{subsection.4.4.8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Hardware initialization in Linux}}{51}{figure.4.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.9}Port the essential stuff}{51}{subsection.4.4.9}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.4.9.0.2}Interrupts in SPIRIT1}{51}{paragraph.4.4.9.0.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Testing}{51}{section.4.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Enable the SPI in RPI2 board}{52}{subsection.4.5.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces enable the SPI in RPI2 board}}{52}{figure.4.8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1.1}Make the entry in dts}{52}{subsubsection.4.5.1.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Entry in dts}}{53}{figure.4.9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Interfacing between RPI2 and SPSGRF(SPIRIT1)}{53}{subsection.4.5.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces RPI2 and SPIRIT1 Interfacing}}{53}{table.4.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces Interfacing between RPI2 and SPIRIT1}}{54}{figure.4.10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.3}Test using logic Analyzer}{54}{subsection.4.5.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces Raspberry PI output on logic Analyzer}}{54}{figure.4.11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.4}Test the hardware}{55}{subsection.4.5.4}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Hardware Register}}{55}{table.4.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Value to be read from SPIRIT1}}{55}{table.4.3}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Testing of the driver of LED7708}{56}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}LED7708 Introduction}{48}{section.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}LED7708 read/write protocols}{48}{subsection.5.1.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1.1}Serial interface internal registers}{48}{subsubsection.5.1.1.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Internal register operation encoding}}{49}{table.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}LED7708 Linux device driver}{49}{subsection.5.1.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Linux kernel architecture}}{49}{figure.5.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Interfacing of the LED7708 with RPI2 board}{50}{section.5.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Hardware setup}{50}{subsection.5.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1.1}Hardware connection between LED7708 and RPI2 board}{50}{subsubsection.5.2.1.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Interfacing between LED board and RPI2}}{50}{figure.5.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1.2}Hardware Setup between RPI2 and LED7708 Eval board}{51}{subsubsection.5.2.1.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Hardware setup between LED7708 and RPI2 board}}{51}{figure.5.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Software setup}{51}{subsection.5.2.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Adding Linux Device driver support in the Linux kernel}{52}{section.5.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Adding Device tree bindings for LED7708 device driver}{53}{subsection.5.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Adding Linux driver in the kernel - Out of the tree}{53}{subsection.5.3.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Insert the modules}{53}{section.5.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Wave form for the example script}}{54}{figure.5.4}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion and Future Scope}{55}{chapter.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}LED7708 Introduction}{56}{section.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}LED7708 read/write protocols}{56}{subsection.5.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1.1}Serial interface internal registers}{56}{subsubsection.5.1.1.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Internal register operation encoding}}{57}{table.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}LED7708 Linux device driver}{57}{subsection.5.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Linux kernel architecture}}{57}{figure.5.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Interfacing of the LED7708 with RPI2 board}{58}{section.5.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Hardware setup}{58}{subsection.5.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1.1}Hardware connection between LED7708 and RPI2 board}{58}{subsubsection.5.2.1.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Interfacing between LED board and RPI2}}{58}{figure.5.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1.2}Hardware Setup between RPI2 and LED7708 Eval board}{59}{subsubsection.5.2.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Hardware setup between LED7708 and RPI2 board}}{59}{figure.5.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Software setup}{59}{subsection.5.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Adding Linux Device driver support in the Linux kernel}{60}{section.5.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Adding Device tree bindings for LED7708 device driver}{61}{subsection.5.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Adding Linux driver in the kernel - Out of the tree}{61}{subsection.5.3.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Insert the modules}{61}{section.5.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Wave form for the example script}}{62}{figure.5.4}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion and Future Scope}{63}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Conclusion}{55}{section.6.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Future Scope}{55}{section.6.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Conclusion}{63}{section.6.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Future Scope}{63}{section.6.2}}
 \bibcite{IEEE 802.15.4}{1}
 \bibcite{Driver Book}{2}
 \bibcite{Linux kernel Documentation}{3}
 \bibcite{Data sheet}{4}
 \bibcite{Build the kernel}{5}
-\newlabel{LastPage}{{}{57}{}{page.57}{}}
+\newlabel{LastPage}{{}{65}{}{page.65}{}}
